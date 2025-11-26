@@ -45,26 +45,26 @@ set_option maxHeartbeats 2000000 in
 Proof strategy: Use Lemma 2.2 (eq_zero_of_eval_zero_at_prod_finset) to prove Theorem 2.1
 
 Proof outline:
-1. Assume the conclusion is false, i.e., there exists a set E ⊆ Z_p with |E| = m such that ⊕ₕ∑Aᵢ ⊆ E
-2. Construct the polynomial Q(x₀,...,xₖ) = h(x₀,...,xₖ) · ∏_{e∈E} (x₀+...+xₖ - e)
-   - deg(Q) = deg(h) + m = ∑cᵢ
-   - For all (a₀,...,aₖ) ∈ ∏Aᵢ, we have Q(a₀,...,aₖ) = 0
-   - The coefficient of monomial ∏xᵢ^{cᵢ} in Q is nonzero
+1. Assume the conclusion is false, i.e., there exists a set E subset Z_p with |E| = m such that restricted sumset subset E
+2. Construct the polynomial Q(x_0,...,x_k) = h(x_0,...,x_k) * prod_{e in E} (x_0+...+x_k - e)
+   - deg(Q) = deg(h) + m = sum c_i
+   - For all (a_0,...,a_k) in prod A_i, we have Q(a_0,...,a_k) = 0
+   - The coefficient of monomial prod x_i^{c_i} in Q is nonzero
 
-3. For each i, define gᵢ(xᵢ) = ∏_{a∈Aᵢ} (xᵢ - a) = xᵢ^{cᵢ+1} - ∑ⱼ bᵢⱼxᵢʲ
-4. Construct polynomial Q̅ by replacing all occurrences of xᵢ^{cᵢ+1} in Q with ∑ⱼ bᵢⱼxᵢʲ
-   - For each aᵢ ∈ Aᵢ, gᵢ(aᵢ) = 0, so Q̅ still vanishes on ∏Aᵢ
-   - deg_{xᵢ}(Q̅) ≤ cᵢ
+3. For each i, define g_i(x_i) = prod_{a in A_i} (x_i - a) = x_i^{c_i+1} - sum_j b_ij x_i^j
+4. Construct polynomial Q_bar by replacing all occurrences of x_i^{c_i+1} in Q with sum_j b_ij x_i^j
+   - For each a_i in A_i, g_i(a_i) = 0, so Q_bar still vanishes on prod A_i
+   - deg_{x_i}(Q_bar) <= c_i
 
 5. Apply Lemma 2.2:
-   - Q̅ vanishes on ∏Aᵢ
-   - Degree in each variable ≤ cᵢ
-   - Therefore Q̅ ≡ 0
+   - Q_bar vanishes on prod A_i
+   - Degree in each variable <= c_i
+   - Therefore Q_bar = 0
 
-6. But the coefficient of ∏xᵢ^{cᵢ} in Q̅ is the same as in Q:
+6. But the coefficient of prod x_i^{c_i} in Q_bar is the same as in Q:
    - The replacement process doesn't affect this specific monomial
    - By assumption, this coefficient is nonzero in Q
-   - Therefore it's nonzero in Q̅, contradicting Q̅ ≡ 0
+   - Therefore it's nonzero in Q_bar, contradicting Q_bar = 0
 
 Key points:
 - Use polynomial replacement technique to reduce degrees to satisfy Lemma 2.2 conditions
@@ -85,7 +85,7 @@ theorem ANR_polynomial_method (h : MvPolynomial (Fin (k + 1)) (ZMod p))
   set S : Finset (ZMod p) :=
   ((Fintype.piFinset A).filter (fun f => h.eval f ≠ 0)).image (fun f => ∑ i, f i) with hS_def
 
-  -- Step 1: Prove |S| ≥ m + 1 by contradiction
+  -- Step 1: Prove |S| >= m + 1 by contradiction
   have hS_card : S.card ≥ m + 1 := by
     by_contra! H
 
@@ -100,7 +100,7 @@ theorem ANR_polynomial_method (h : MvPolynomial (Fin (k + 1)) (ZMod p))
     set Q : MvPolynomial (Fin (k + 1)) (ZMod p) :=
       h * (E.map (fun e => sumX - C e)).prod with hQ_def
 
-    -- Q vanishes on ∏Aᵢ
+    -- Q vanishes on prod A_i
     have hQ_zero : ∀ (x : Fin (k + 1) → ZMod p), (∀ i, x i ∈ A i) → eval x Q = 0 := by
       intro x hx
       rw [hQ_def, eval_mul]
@@ -152,7 +152,7 @@ theorem ANR_polynomial_method (h : MvPolynomial (Fin (k + 1)) (ZMod p))
           · refine Finset.sup_le fun d hd => ?_
             simp [this] at hd
             have : (d.sum fun x e ↦ e) ≤ 1 := by
-              -- Step 1: Coefficient decomposition of ∑X_i - C e
+              -- Step 1: Coefficient decomposition of sum X_i - C e
               have coeff_sub_eq :
               coeff d (∑ i, X i - C e) = coeff d (∑ i, X i) + -coeff d (C e) := by
                 simp [MvPolynomial.coeff_sub]
@@ -171,7 +171,7 @@ theorem ANR_polynomial_method (h : MvPolynomial (Fin (k + 1)) (ZMod p))
                   subst a
                   simp_all only [not_true_eq_false]
               rw [coeff_C_eq] at coeff_sub_eq
-              -- Step 2: d is in the support since its coefficient ≠ 0
+              -- Step 2: d is in the support since its coefficient != 0
               have mem_support : d ∈ (∑ i, X i - C e).support := by
                 rw [MvPolynomial.mem_support_iff, coeff_sub_eq]
                 subst hE_card
@@ -282,15 +282,15 @@ theorem ANR_polynomial_method (h : MvPolynomial (Fin (k + 1)) (ZMod p))
       rw [hQ_def, coeff_mul]
       sorry
 
-    -- Define elimination polynomials gᵢ
+    -- Define elimination polynomials g_i
     set g : Fin (k + 1) → MvPolynomial (Fin (k + 1)) (ZMod p) :=
       elimination_polynomials A with hg_def
 
-    -- Construct Q̅ by reducing degrees
+    -- Construct Q_bar by reducing degrees
     set Q_bar : MvPolynomial (Fin (k + 1)) (ZMod p) :=
       reduce_polynomial_degrees Q g c with hQ_bar_def
 
-    -- Now the key properties of Q̅
+    -- Now the key properties of Q_bar
     have ⟨R, decomp⟩ :
       ∃ R, (E.map (fun e => sumX - C e)).prod = sumX^m + R :=
     by
@@ -306,12 +306,12 @@ theorem ANR_polynomial_method (h : MvPolynomial (Fin (k + 1)) (ZMod p))
         (h * sumX^m).coeff target + (h * R).coeff target :=
     by sorry
 
-    -- Q̅ vanishes on ∏Aᵢ
+    -- Q_bar vanishes on prod A_i
     have hQ_bar_zero : ∀ (x : Fin (k + 1) → ZMod p), (∀ i, x i ∈ A i) → eval x Q_bar = 0 := by
       intro x hx
       sorry
 
-    -- Q̅ has degree constraints
+    -- Q_bar has degree constraints
     have hQ_bar_deg : ∀ i, Q_bar.degreeOf i ≤ c i := by
       intro i
       sorry
@@ -321,7 +321,7 @@ theorem ANR_polynomial_method (h : MvPolynomial (Fin (k + 1)) (ZMod p))
         have := hQ_bar_deg i
         grind) hQ_bar_zero
 
-    -- But the coefficient of the target monomial in Q̅ is nonzero
+    -- But the coefficient of the target monomial in Q_bar is nonzero
     have hQ_bar_coeff : MvPolynomial.coeff (Finsupp.equivFunOnFinite.symm c) Q_bar ≠ 0 := by
       -- Note that the replacement process does not affect this coefficient
       sorry
@@ -332,15 +332,15 @@ theorem ANR_polynomial_method (h : MvPolynomial (Fin (k + 1)) (ZMod p))
 
   -- Step 2: Prove m < p first (this is needed for the main argument)
   have hmp : m < p := by
-    by_contra! H  -- H: m ≥ p
-    -- If m ≥ p, use the Frobenius endomorphism property in characteristic p
+    by_contra! H  -- H: m >= p
+    -- If m >= p, use the Frobenius endomorphism property in characteristic p
     have frobenius_identity : ((∑ i : Fin (k + 1), MvPolynomial.X i) ^ p :
     MvPolynomial (Fin (k + 1)) (ZMod p)) = ∑ i, MvPolynomial.X i ^ p := by
       subst hm
       simp_all only [ne_eq, ge_iff_le, S]
       exact sum_pow_char p Finset.univ X
 
-    -- This changes the structure of (∑ X_i)^m when m ≥ p, leading to contradiction with h_coeff
+    -- This changes the structure of (sum X_i)^m when m >= p, leading to contradiction with h_coeff
     subst hm
     simp_all only [ne_eq, ge_iff_le, S]
     sorry  -- Detailed argument needed here
