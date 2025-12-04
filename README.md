@@ -20,6 +20,7 @@ Then, open the new folder in Git Bash (MINGW64). I assume that you have already 
 
 "
 elan toolchain install leanprover/lean4:v4.26.0-rc2
+
 elan default leanprover/lean4:v4.26.0-rc2
 "
 
@@ -49,15 +50,16 @@ After saving the file, you should type "lake update" in Git Bash and Enter (I as
 After finishing, it will show you:
 
 "
-Not running `lake exe cache get` yet, as the `lake` version does not match the toolchain version in the project.
-You should run `lake exe cache get` manually.
+Not running lake exe cache get yet, as the lake version does not match the toolchain version in the project.
+You should run lake exe cache get manually.
 "
+(The author delete ``, as it cannot be seen correctly in README.md. The author don't know why.)
 
 So you just type "lake exe cache get" and Enter.
 
 Then download this repo no matter by GitHub Desktop or by url. Paste it to "./ThePolynomialMethod/ThePolynomialMethod". In that folder you may find there's already a "Basic.lean". It is the same as the one in this repo.
 
-Then open a ".lean", you will wait until the Lean InfoView to load all the "import" needed. For the files "import Mathlib" (import the whole Mathlib), it might be very slow. The author often waited for hours. To save time, after it imports the whole Mathlib, you can "lake exe cache get" then it will save to your disk. 
+Then open a ".lean", you will wait until the Lean InfoView to load all the "import" needed. For the files "import Mathlib" (import the whole Mathlib), it might be very slow. The author often waited for hours. To save time, after it imports the whole Mathlib, you can "lake exe cache get" again then it will save to your folder. 
 
 ### Step End
 
