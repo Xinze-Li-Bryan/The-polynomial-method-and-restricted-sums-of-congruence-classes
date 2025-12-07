@@ -28,7 +28,7 @@ And the most respect should be given to Helios, which is one of the coworkers he
 
 Spenser invents the legend of ‘guiltles blood’ to explain why the Thames at Verulamium had, since Gildas, chosen to change its course. (Stewart Mottram, “‘With guiltles blood oft stained’: Spenser’s Ruines of Time and the Saints of St. Albans,” Spenser Studies: A Renaissance Poetry Annual 32 (2018): 533–56, https://hull-repository.worktribe.com/OutputFile/747220) Also, Nick invents thr legend of 妈咪河移位 to explain why the code on Theorem 2.1 had, since Dec. 7th, chosen to change its course:
 
-"for to shunne the horrible mischiefe" 为了躲避那可怕的灾祸（来自Helios的怒火）
+"for to shunne the horrible mischiefe" 为了躲避那可怕的灾祸（来自Helios的怒火——译者著）
 
 
 
