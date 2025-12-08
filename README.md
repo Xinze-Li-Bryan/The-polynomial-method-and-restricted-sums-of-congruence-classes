@@ -50,7 +50,7 @@ Spenser invents the legend of 'guiltles blood' to explain why the Thames at Veru
 
 "for to shunne the horrible mischiefe" (Translator's Note: the anger from Helios) 为了躲避那可怕的灾祸（译者注：来自Helios的怒火）
 
-To Read more about Spenser's Ruines of Time, you can buy Spenser's Collection: Complaints. But you must agree, admit, and affirm that Nick shows great respect to his coworker Helios, not complaint.
+To read more about Spenser's Ruines of Time, you can buy Spenser's Collection: Complaints. But you must agree, admit, and affirm that Nick shows great respect to his coworker Helios, not ancomplaint.
 
 ### Step
 
