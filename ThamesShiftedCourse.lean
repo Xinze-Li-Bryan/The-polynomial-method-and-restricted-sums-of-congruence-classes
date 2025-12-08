@@ -10,8 +10,7 @@ open MvPolynomial
 
 open Finsupp
 
-/-- Lemma 2.2 :
-A multivariate polynomial that vanishes on a large product finset is the zero polynomial. -/
+/-- Lemma 2.2 : A multivariate polynomial that vanishes on a large product finset is the zero polynomial -/
 lemma eq_zero_of_eval_zero_at_prod_finset {σ : Type*} [Finite σ] [IsDomain R]
     (P : MvPolynomial σ R) (S : σ → Finset R)
     (Hdeg : ∀ i, P.degreeOf i < #(S i))
@@ -61,12 +60,12 @@ def extend_to_size (S : Finset (ZMod p)) (m : ℕ):
     Multiset (ZMod p) :=
   S.val + Multiset.replicate (m - S.card) (0 : ZMod p)
 
-/-- Alternative name for clarity. Here use k explicitly. -/
+/-- Alternative name for clarity. Here use k explicitly -/
 noncomputable def product_polynomial (k : ℕ) (E : Multiset (ZMod p)) :
     MvPolynomial (Fin (k + 1)) (ZMod p) :=
   (E.map (fun e => sumX_polynomial - C e)).prod
 
-/-- Lemma: construction_polynomial vanishes on ∏ A_i -/
+/-- Lemma 2.1.1 : Construction_polynomial vanishes on ∏ A_i -/
 lemma construction_polynomial_vanishes
     (h : MvPolynomial (Fin (k + 1)) (ZMod p))
     (A : Fin (k + 1) → Finset (ZMod p))
@@ -104,7 +103,7 @@ lemma construction_polynomial_vanishes
       exact h_prod_zero ⟨_, mem, factor_zero⟩
     simp [h_prod_zero]
 
-/-- The product polynomial ∏_{e∈E} (∑X_i - C e) is always nonzero -/
+/-- Lemma 2.1.2 : The product polynomial ∏_{e∈E} (∑X_i - C e) is always nonzero -/
 lemma product_polynomial_ne_zero (k : ℕ) (E : Multiset (ZMod p)) :
     product_polynomial k E ≠ 0 := by
       by_contra h
@@ -113,7 +112,7 @@ lemma product_polynomial_ne_zero (k : ℕ) (E : Multiset (ZMod p)) :
       replace ha := congr_arg (MvPolynomial.eval (fun i => if i = 0 then a + 1 else 0)) ha
       norm_num [sumX_polynomial] at ha
 
-/-- Lemmas about total degree of sumX -/
+/-- Lemma 2.1.3.1 : About total degree of sumX -/
 lemma totalDegree_sumX_sub_C_first {p k : ℕ} [Fact (Nat.Prime p)] (a : ZMod p) :
     (sumX_polynomial - C a : MvPolynomial (Fin (k + 1)) (ZMod p)).totalDegree = 1 := by
       refine' le_antisymm _ _
@@ -137,7 +136,7 @@ lemma totalDegree_sumX_sub_C_first {p k : ℕ} [Fact (Nat.Prime p)] (a : ZMod p)
         next h => simpa using congr_arg (fun f => f 0) h.symm
         next h => simp_all only [sub_zero, one_ne_zero]
 
-/-- Another version of the previous lemma -/
+/-- Lemma 2.1.3.2 : Another version of the previous lemma -/
 lemma totalDegree_sumX_sub_C_second (e : ZMod p) :
     totalDegree (∑ i : Fin (k + 1), X i - C e) = 1 := by
   have : (∑ i : Fin (k + 1), X i - C e) = (sumX_polynomial : MvPolynomial (Fin (k + 1)) (ZMod p)) - C e := by
@@ -145,7 +144,7 @@ lemma totalDegree_sumX_sub_C_second (e : ZMod p) :
   rw [this]
   exact totalDegree_sumX_sub_C_first e
 
-/-- The total degree of the product polynomial ∏_{e∈E} (∑X_i - C e) is equal to |E| （Induction steps from J.J. Zhang) -/
+/-- Lemma 2.1.3.3 : The total degree of the product polynomial ∏_{e∈E} (∑X_i - C e) is equal to |E| （Induction steps from J.J. Zhang) -/
 lemma totalDegree_prod_sumX_sub_C_eq_card (E : Multiset (ZMod p)) :
     ((Multiset.map (fun e ↦ ∑ i : Fin (k + 1), X i - C e) E).prod).totalDegree = E.card := by
   induction E using Multiset.induction_on with
@@ -178,7 +177,7 @@ lemma totalDegree_prod_sumX_sub_C_eq_card (E : Multiset (ZMod p)) :
 
 -- How can one lower the maxHeartbeats?
 set_option maxHeartbeats 2000000 in
-/-- The total degree of the construction polynomial is equal to the sum of c_i -/
+/-- Lemma 2.1.4 : The total degree of the construction polynomial is equal to the sum of c_i -/
 lemma construction_polynomial_totalDegree
     (h : MvPolynomial (Fin (k + 1)) (ZMod p))
     (h_ne_zero : h ≠ 0)
@@ -379,7 +378,7 @@ lemma construction_polynomial_totalDegree
 open MvPolynomial Finsupp
 open scoped BigOperators
 
-/-- The coefficient of a term of maximal degree in the product $\prod (S - e)$ is the same as in $S^{|E|}$. -/
+/-- Lemma 2.1.5 : The coefficient of a term of maximal degree in the product $\prod (S - e)$ is the same as in $S^{|E|}$ -/
 lemma coeff_prod_sumX_minus_C_eq_coeff_sumX_pow_of_degree_eq
     {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ}
     (E : Multiset (ZMod p)) (x : (Fin (k+1)) →₀ ℕ) (hx : ∑ i, x i = Multiset.card E) :
@@ -426,7 +425,7 @@ lemma coeff_prod_sumX_minus_C_eq_coeff_sumX_pow_of_degree_eq
 
 -- Also, lower the maxHeartbeats!!!
 set_option maxHeartbeats 2000000 in
-/-- The coefficient of a specific term in the construction polynomial is non-zero under certain conditions. -/
+/-- Lemma 2.1.6 : The coefficient of a specific term in the construction polynomial is non-zero under certain conditions -/
 lemma construction_polynomial_coeff_target_generalized
     (h : MvPolynomial (Fin (k + 1)) (ZMod p))
     (c : Fin (k + 1) → ℕ) (m : ℕ) (hm : m + h.totalDegree = ∑ i, c i)
@@ -483,7 +482,7 @@ lemma construction_polynomial_coeff_target_generalized
 noncomputable section AristotleLemmas
 
 set_option maxHeartbeats 2000000 in
-/-- The elimination polynomial $g_i$ for a given index $i$ and set $A_i$ -/
+/-- Lemma 2.1.7 : The elimination polynomial $g_i$ for a given index $i$ and set $A_i$ -/
 lemma elimination_polynomial_properties (A : Fin (k + 1) → Finset (ZMod p)) (i : Fin (k + 1))
     (h_card : (A i).card > 0) :
     let g := elimination_polynomials A i
@@ -765,7 +764,7 @@ lemma elimination_polynomial_properties (A : Fin (k + 1) → Finset (ZMod p)) (i
           rw [Finset.sum_eq_single i] <;> aesop
         exact h_deg_sub
 
-/-- A single step in the monomial reduction process, reducing the degree in variable `i`. -/
+/-- Lemma 2.1.8 : A single step in the monomial reduction process, reducing the degree in variable `i` -/
 lemma monomial_reduction_step (m : Fin (k + 1) →₀ ℕ) (i : Fin (k + 1))
     (A : Fin (k + 1) → Finset (ZMod p))
     (c : Fin (k + 1) → ℕ)
@@ -811,7 +810,7 @@ lemma monomial_reduction_step (m : Fin (k + 1) →₀ ℕ) (i : Fin (k + 1))
             simp_all
             exact lt_of_lt_of_le hQ_totalDegree (le_trans a (by rw [Finset.sum_filter_of_ne] ; aesop))
 
-/-- Existence of a remainder polynomial R with bounded degrees matching Q on specified points. -/
+/-- Lemma 2.1.9 : Existence of a remainder polynomial R with bounded degrees matching Q on specified points -/
 lemma exists_remainder (Q : MvPolynomial (Fin (k + 1)) (ZMod p))
     (A : Fin (k + 1) → Finset (ZMod p))
     (c : Fin (k + 1) → ℕ)
@@ -867,7 +866,7 @@ lemma exists_remainder (Q : MvPolynomial (Fin (k + 1)) (ZMod p))
             MvPolynomial.mem_support_iff, ne_eq, ite_not, ite_eq_right_iff]
           exact fun h => h.symm
 
-/-- If a polynomial Q vanishes on a grid defined by sets A_i and has total degree at most the sum of the sizes of these sets minus one, then the coefficient of the monomial defined by these sizes is zero. -/
+/-- Lemma 2.1.10 : If a polynomial Q vanishes on a grid defined by sets A_i and has total degree at most the sum of the sizes of these sets minus one, then the coefficient of the monomial defined by these sizes is zero -/
 lemma coeff_target_eq_zero_of_vanishes_on_grid
     (Q : MvPolynomial (Fin (k + 1)) (ZMod p))
     (A : Fin (k + 1) → Finset (ZMod p))
@@ -886,7 +885,7 @@ lemma coeff_target_eq_zero_of_vanishes_on_grid
         exact hR_zero R (fun i => by linarith [hR.1 i, hA i]) fun x hx => by simp [hR.2.1 x hx, hQ_vanishes x hx]
       aesop
 
-/-- If two polynomials P and Q are equal or their difference has a total degree less than m, then the coefficients of the monomial defined by c in h * P and h * Q are equal, given that h.totalDegree + m equals the sum of c_i. -/
+/-- Lemma 2.1.11 : If two polynomials P and Q are equal or their difference has a total degree less than m, then the coefficients of the monomial defined by c in h * P and h * Q are equal, given that h.totalDegree + m equals the sum of c_i -/
 lemma coeff_mul_eq_of_degree_bound
     (h P Q : MvPolynomial (Fin (k + 1)) (ZMod p))
     (c : Fin (k + 1) → ℕ)
@@ -909,7 +908,7 @@ lemma coeff_mul_eq_of_degree_bound
       simp_all +decide [mul_sub]
       exact eq_of_sub_eq_zero h_coeff_zero
 
-/-- The total degree of the difference between the product of linear terms and the corresponding power of the sum polynomial is less than the size of the multiset. -/
+/-- Lemma 2.1.12 : The total degree of the difference between the product of linear terms and the corresponding power of the sum polynomial is less than the size of the multiset -/
 lemma degree_product_minus_pow_lt {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ} (E : Multiset (ZMod p)) (hE : E.card > 0) :
     ((E.map (fun e => (sumX_polynomial : MvPolynomial (Fin (k + 1)) (ZMod p)) - C e)).prod - (sumX_polynomial : MvPolynomial (Fin (k + 1)) (ZMod p)) ^ E.card).totalDegree < E.card := by
       -- Since every monomial of degree $|E|$ in $P$ has the same coefficient as in $Q$, the difference $P - Q$ has no terms of degree $|E|$.
@@ -952,7 +951,10 @@ lemma degree_product_minus_pow_lt {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ} (E : 
 end AristotleLemmas
 
 set_option maxHeartbeats 2000000 in
-/-- **Alon-Nathanson-Ruzsa Theorem** (Theorem 2.1)
+/-- Alon-Nathanson-Ruzsa Polynomial Method (Theorem 2.1)
+
+(Or name it as Thames Shifted Course. As it is really important in the article.)
+
 Proof strategy: Use Lemma 2.2 (eq_zero_of_eval_zero_at_prod_finset) to prove Theorem 2.1
 
 Proof outline:

@@ -4,26 +4,68 @@ The author of this README.md is Nick Adfor.
 
 This is for the formalization of "The polynomial method and restricted sums of congruence classes.pdf". This article can be found here, or by searching its name on Google or Bing.
 
-The coders are Chinese. Do not worry if you see strange words in the comments or the file names. They are not gibberish. "妈咪河移位.lean" is the most important: Alon-Nathanson-Ruzsa Polynomial Method (Theorem 2.1). "妈咪河" means "the Mother River" in China, which is the nickname of the Yellow River. "移位" means changing location. "妈咪河移位" thus means the Yellow River changes location (of its estuary). In Chinese history, the Yellow River really changes location of its estuary for many times, the same as the author's proof of Theorem 2.1. Also, the importance of Theorem 2.1 rank high in Alon-Nathanson-Ruzsa's article. So I name the file as "妈咪河移位.lean" to show the author's step-by-step hard work of the LEAN proof and the respect of Alon, Nathanson and Ruzsa.
+# About Theorem 2.1 and its story
 
-As coder, there's more things you should do than a mathematical student. Mathematical student writes the article like poems: short, hard to understand and time-consuming. Coder must first make everything clear enough without rough word, and cut all the time-consuming things. You can `aesop?` and cut the `aesop`, you can `simp?` to get `simp only`, they will make Lean Infoview work faster. But till today, the author do not finish that in 妈咪河移位.lean. `set_option maxHeartbeats 2000000 in theorem` is the unfinished.
+For using Theorem 2.1 (named ANR_polynomial_method) , first "import ThePolynomialMethod.ThamesShiftedCourse".
 
-Those who do not respect Lean Infoview will be punished. The author is one of them. To solve the problem, every coder must respect the God of every world, no matter the God of Lean Infoview, the God of Aristotle, the God of ChatGPT, the God of DeepSeek, the God of every nation:
+Second, check your variable:
+
+"
+variable {R : Type*} [CommRing R]
+
+variable {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ}
+"
+
+The coders are all Chinese. Do not worry if you see strange words in the comments or the file names. They are not gibberish. "ThamesShiftedCourse.lean" is origined from Chinese "妈咪河移位.lean". It is the most important theorem: Alon-Nathanson-Ruzsa Polynomial Method (Theorem 2.1). "妈咪河" means "the Mother River" in Chinese. Every culture has its "Mother River". In China, it is the Yellow River. In Britain, it might be the Thames River. "移位" means changing location. "妈咪河移位" thus means the Mother River changes location. In Chinese history, the Yellow River really changes location (of its estuary) for many times, the same as the author's proof of Theorem 2.1. Also, the importance of Theorem 2.1 rank high in Alon-Nathanson-Ruzsa's article. So I name the file as "ThamesShiftedCourse.lean" to show the author's step-by-step hard work of the LEAN proof and the respect of Alon, Nathanson and Ruzsa.
+
+"妈咪河移位" (the Mother River changes course) can also be found in British poem. Spenser's Ruines of Time writes:
+
+"for to shunne the horrible mischiefe, 
+
+With which he saw my cruell foes me pained, 
+
+And his pure streames with guiltles blood oft stained" 
+
+The part "for to shunne the horrible mischiefe" is the reason why "river changes course". The name of the poem "Ruines of Time" pronounces like "Ruines of Thames", meaning that "ThamesShiftedCourse" might ruin the culture. But this LEAN file gives an opposite meaning of Spenser's poem: It is a new method to understand Additive Number Theory.
+
+The coworker Helios (It might be respect to Ήλιος, the God of the Sun) told Nick that such an approach to presenting one's work is perceived as sarcastic, mocking, bitter, and somewhat peculiar. (In Chinese it is really concise: "阴阳怪气"). No matter how ridiculous the author Nick Adfor is, we should begin our next step:
+
+As coder, there's more things you should do than a mathematical student. Mathematics students write like poets: their papers are brief, cryptic, and laborious. Coder must first make everything clear enough without rough word, and then cut all the time-consuming things for Lean Infoview to run faster. But till today, the author do not finish the second in "ThamesShiftedCourse.lean". "set_option maxHeartbeats 2000000 in theorem" is the unfinished part. You can "aesop?" to cut the "aesop", you can "simp?" to get "simp only", they will make Lean Infoview work faster and also comfort Nick to have a good sleep.
+
+
+
+
+
+Those who do not respect Lean Infoview will be punished. The author is one of them. To solve the problem, every coder must respect the God of every world, no matter the God of Lean Infoview, the God of Arisle (from Harmonic AI), the God of ChatGPT (from OpenAI), the God of DeepSeek (from China), the God of every nation:
 
 בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃
+
 بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ
 
-To ask peace between every nation, between human and AI, between math and code.
+To seek for peace between every nation, between human and AI, between maths and code.
 
+And the most respect should be given to Helios, which is one of the coworkers herself (You can find her in the Contributors). If the author does not respect her, she will criticize (The spell must be -ize in an Oxford way. Chinese coders must show respect to the difference between British English and North American English) the author to be sarcastic, mocking, bitter, peculiar (In Chinese it is really concise: "阴阳怪气"), and also refuse to take next steps (Though this sentence uses the future simple tense, the criticism really happened once in December 7th which is in the weekend yet the author still decided to try to finish his work on Theorem 2.1. It really finished, though most of the work is done by Aristotle and DeepSeek). Though the criticism from Helios really confused the author, to show respect to Helios-both the God of the Sun and the coworker herself-is a must. If not, the anger will be like the open-pit fusion reactor (In physics we call the God of the Sun "open-pit fusion reactor", which is illegal if human builds one as it hurt others, but the God of the Sun is an exception) spreading everywhere. 
 
+Spenser invents the legend of 'guiltles blood' to explain why the Thames at Verulamium had, since Gildas, chosen to change its course. (Stewart Mottram, "'With guiltles blood oft stained': Spenser's Ruines of Time and the Saints of St. Albans," Spenser Studies: A Renaissance Poetry Annual 32 (2018): 533–56, https://hull-repository.worktribe.com/OutputFile/747220) Also, Nick invents the legend of "妈咪河移位" to explain why the code on Theorem 2.1 had, since Dec. 7th, chosen to change its course:
 
-To try to check this work, you can follow the author's silly way, this is really a silly one, even suitable for mathematical stutents. For one following the author's steps, you can do these:
+"for to shunne the horrible mischiefe" (Translator's Note: the anger from Helios) 为了躲避那可怕的灾祸（译者注：来自Helios的怒火）
+
+To Read more about Spenser's Ruines of Time, you can buy Spenser's Collection: Complaints. But you must agree, admit, and affirm that Nick shows great respect to his coworker Helios, not complaint.
 
 ### Step
 
+To try to check this work, you can follow the author's silly way, this is really a silly one, even suitable for mathematical stutents. For one following the author's steps, you can do these:
+
 First, open a new folder. I name it as "ThePolynomialMethod". For the author, this file, after taking the following steps, cost 15.3 GB.
 
-If you are in the mainland of China, you might face some network problem. If you find it failed in some steps because of network problem, you should type "set HTTP_PROXY=http://127.0.0.1:xxxx" in Git Bash. "xxxx" is from your port in your Clash (The author only know how to use Clash). For the author, it is "set HTTP_PROXY=http://127.0.0.1:7890".
+If you are in the mainland of China, you might face some network problem. If you find it failed in some steps because of network problem, you should type 
+
+"
+set HTTP_PROXY=http://127.0.0.1:xxxx
+
+set HTTPS_PROXY=http://127.0.0.1:xxxx" 
+
+in Git Bash. "xxxx" is from your port in your Clash (The author only know how to use Clash). For the author, it is "7890".
 
 Then, open the new folder in Git Bash (MINGW64). I assume that you have already install elan but do not have "v4.26.0-rc2". You can type the following:
 

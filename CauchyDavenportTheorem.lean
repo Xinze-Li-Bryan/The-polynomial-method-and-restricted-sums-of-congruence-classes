@@ -4,57 +4,31 @@ import Mathlib.Analysis.Normed.Ring.Lemmas
 import Mathlib.Combinatorics.Nullstellensatz
 import Mathlib.Data.Int.Star
 import Mathlib.Data.Nat.Prime.Factorial
+import ThePolynomialMethod.ThamesShiftedCourse
 
 open Finsupp
 open scoped Finset
 open MvPolynomial
 open BigOperators
 
-
--- 背景与定理2.1
 variable {R : Type*} [CommRing R]
--- variable {p : ℕ} [Fact p.Prime]
-
-lemma eq_zero_of_eval_zero_at_prod_finset {σ : Type*} [Finite σ] [IsDomain R]
-    (P : MvPolynomial σ R) (S : σ → Finset R)
-    (Hdeg : ∀ i, P.degreeOf i < #(S i))
-    (Heval : ∀ (x : σ → R), (∀ i, x i ∈ S i) → eval x P = 0) :
-    P = 0 := by
-      exact MvPolynomial.eq_zero_of_eval_zero_at_prod_finset P S Hdeg Heval
-
 variable {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ}
 
-theorem ANR_polynomial_method (h : MvPolynomial (Fin (k + 1)) (ZMod p))
-    (A : Fin (k + 1) → Finset (ZMod p))
-    (c : Fin (k + 1) → ℕ)
-    (hA : ∀ i, (A i).card = c i + 1)
-    (m : ℕ) (hm : m + h.totalDegree = ∑ i, c i)
-    (h_coeff : MvPolynomial.coeff (Finsupp.equivFunOnFinite.symm c)
-    ((∑ i : Fin (k + 1), MvPolynomial.X i) ^ m * h) ≠ 0) :
-    let S : Finset (ZMod p) :=
-      (Fintype.piFinset A).filter (fun f => h.eval f ≠ 0) |>.image (fun f => ∑ i, f i)
-    S.card ≥ m + 1 ∧ m < p := by
-    -- 这里省略定理2.1本身的证明过程
-    sorry
-
--- 辅助引理：
--- 1. 将 Fin 2 上的和转化为二元和
+/-- Lemma 1.1.1: Convert the sum on Fin 2 into a binary sum -/
 lemma sum_fin_two {M : Type*} [AddCommMonoid M] (f : Fin 2 → M) :
     ∑ i, f i = f 0 + f 1 := by
   rw [Fin.sum_univ_two]
 
-
-
--- 2. 二项式系数在 ZMod p 中非零的条件
+/-- Lemma 1.1.2: The condition for binomial coefficients to be nonzero in ZMod p -/
 lemma binomial_coeff_ne_zero_mod_p (n k : ℕ) (hp : p.Prime) (h_k : k ≤ n) (h_n : n < p) :
     (Nat.choose n k : ZMod p) ≠ 0 := by
-  -- 1. 将 ≠ 重写为 ¬ ... = ...
+  -- 1. Rewrite ≠ as ¬ ... = ...
   rw [ne_eq]
-  -- 2. 将 ZMod p 中的 = 0 转化为整除关系 (p ∣ n.choose k)
+  -- 2. Transform = 0 in ZMod p into a divisibility relation (p ∣ n.choose k)
   rw [CharP.cast_eq_zero_iff (ZMod p) p]
-  -- 3. 使用反证法：假设 p 能整除 n.choose k
+  -- 3. Use proof by contradiction: assume p divides n.choose k
   intro h_dvd
-  -- 4. 利用二项式系数整除阶乘的性质： p ∣ n.choose k → p ∣ n!
+  -- 4. Use the property of binomial coefficients dividing factorial: p ∣ n.choose k → p ∣ n!
   have key : n.choose k ∣ n.factorial := by
     have h_eq := Nat.choose_mul_factorial_mul_factorial h_k
     rw [mul_assoc] at h_eq
@@ -62,37 +36,38 @@ lemma binomial_coeff_ne_zero_mod_p (n k : ℕ) (hp : p.Prime) (h_k : k ≤ n) (h
     rw [← h_eq]
     exact Nat.dvd_mul_left _ _
   have h_dvd_fact : p ∣ n.factorial := dvd_trans h_dvd key
-  -- 5. 利用素数整除阶乘的性质： p ∣ n! ↔ p ≤ n
+  -- 5. Use the property of a prime dividing a factorial: p ∣ n! ↔ p ≤ n
   rw [Nat.Prime.dvd_factorial] at h_dvd_fact
   · linarith
   exact hp
 
-
-
+/-- Definition of the sumset A + B -/
 def sumset {α : Type*} [Add α] [DecidableEq α] (A B : Finset α) : Finset α :=
   (A ×ˢ B).image (fun x => x.1 + x.2)
 
 variable {A B : Finset (ZMod p)}
-#check sumset A B
 
-
-set_option linter.style.longLine false
--- 3. 证明论文中的 "Case 1" (和较小的情况)
+/-- Lemma 1.1.3:  Prove "Case 1" in the paper (the case with a small sum) -/
 lemma cauchy_davenport_small_sum (A B S : Finset (ZMod p)) (hp : p.Prime) (hA : A.Nonempty) (hB : B.Nonempty)
     (h_sum : A.card + B.card ≤ p + 1) (hS : S = sumset A B) : S.card ≥ A.card + B.card - 1 := by
-  let k_val := 1 --k=1
-  let As : Fin 2 → Finset (ZMod p) := ![A, B]  --Fin 2 表示索引集合 {0,1}，对应 A0,A1​​
+  -- k=1
+  let k_val := 1
+  -- Fin 2 represents the index set {0,1}, corresponding to A0, A1
+  let As : Fin 2 → Finset (ZMod p) := ![A, B]
   let cs : Fin 2 → ℕ := ![A.card - 1, B.card - 1]
   let h_poly : MvPolynomial (Fin 2) (ZMod p) := 1
   let m := A.card + B.card - 2
-  have h_card : ∀ i, (As i).card = cs i + 1 := by -- 证明|Ai|是等于ci+1
+  -- Prove that |Ai| equals ci + 1
+  have h_card : ∀ i, (As i).card = cs i + 1 := by
     intro i; fin_cases i
     · simp [As, cs]; rw [Nat.sub_add_cancel (Nat.succ_le_of_lt hA.card_pos)]
     · simp [As, cs]; rw [Nat.sub_add_cancel (Nat.succ_le_of_lt hB.card_pos)]
-  have h_deg : m + h_poly.totalDegree = ∑ i, cs i := by -- 验证m真的等于∑ci−deg(h)
+  -- Verify that m really equals ∑ci - deg(h)
+  have h_deg : m + h_poly.totalDegree = ∑ i, cs i := by
     simp [h_poly,m,cs]
     rw [show 2 = 1 + 1 by rfl]
-    rw [Nat.sub_add_eq]-- 减法分配律x - (y + z) = x - y - z
+    -- Subtraction distributive law: x - (y + z) = x - y - z
+    rw [Nat.sub_add_eq]
     have h_A_neg_zero : 1 ≤ A.card := by exact Finset.one_le_card.mpr hA
     have h_B_neg_zero : 1 ≤ B.card := by exact Finset.one_le_card.mpr hB
     rw [Nat.add_comm, Nat.add_sub_assoc h_A_neg_zero, add_comm,← Nat.add_sub_assoc h_B_neg_zero]
@@ -100,21 +75,24 @@ lemma cauchy_davenport_small_sum (A B S : Finset (ZMod p)) (hp : p.Prime) (hA : 
     simp [h_poly]
     rw [add_pow]
     rw [coeff_sum]
-    rw [Finset.sum_eq_single (cs 0)] -- 锁定唯一非零项 (m_1 = cs 0)
-    · -- 【分支 1】 证明主项非零 (你原来的代码逻辑放在这里)
+    -- Lock onto the only non-zero term (m_1 = cs 0)
+    rw [Finset.sum_eq_single (cs 0)]
+    · -- Branch 1: Prove the main term is non-zero
       have h_exp : m - cs 0 = cs 1 := by
         dsimp [m, cs]
         aesop
-      rw [h_exp] -- 将指数 m - cs 0 替换为 cs 1
+      -- Replace exponent m - cs 0 with cs 1
+      rw [h_exp]
       rw [mul_comm]
       rw [show (↑(m.choose (cs 0)) : MvPolynomial (Fin 2) (ZMod p)) = C (m.choose (cs 0) : ZMod p) by simp]
       rw [MvPolynomial.coeff_C_mul]
       apply mul_ne_zero
       · apply binomial_coeff_ne_zero_mod_p
         · exact hp
-        · dsimp [m, cs]; aesop -- 证明 cs 0 ≤ m
-        · -- 证明 m < p
-          dsimp [m]
+        -- Prove cs 0 ≤ m
+        · dsimp [m, cs]; aesop
+        -- Prove m < p
+        · dsimp [m]
           have : A.card + B.card ≤ p + 1 := h_sum
           have h1 : A.card + B.card - 2 ≤ p - 1 := by omega
           have h2 : 0 < p := hp.pos
@@ -124,28 +102,30 @@ lemma cauchy_davenport_small_sum (A B S : Finset (ZMod p)) (hp : p.Prime) (hA : 
         rw [coeff_monomial]
         rw [if_pos]
         · rw [one_pow, one_pow, one_mul]; exact one_ne_zero
-        · -- 验证索引相等
-          ext i; fin_cases i
+        -- Verify indices are equal
+        · ext i; fin_cases i
           · simp [cs]
           · simp [cs]
-    · -- 【分支 2】 证明其他项 (b ≠ cs 0) 的系数为 0
+    · -- Branch 2: Prove coefficients of other terms (b ≠ cs 0) are 0
       intro b hb_range h_ne
       rw [show (↑(m.choose b) : MvPolynomial (Fin 2) (ZMod p)) = C (m.choose b : ZMod p) by simp]
       rw [mul_comm, coeff_C_mul]
       simp only [X, monomial_pow, monomial_mul]
       rw [coeff_monomial]
       rw [if_neg]
-      · simp -- 0 * 任意数 = 0
-      · -- 证明：如果索引相等，则 b = cs 0，这将导致矛盾
-        intro h_eq
+      -- 0 * anything = 0
+      · simp
+      -- Prove: if indices are equal, then b = cs 0, which leads to contradiction
+      · intro h_eq
         rw [Finsupp.ext_iff] at h_eq
         specialize h_eq 0
         simp only [Finsupp.add_apply] at h_eq
         simp [cs] at h_eq
         contradiction
-    · -- 【分支 3】 证明 cs 0 在范围内 (cs 0 < m + 1)
+    · -- Branch 3: Prove cs 0 is in range (cs 0 < m + 1)
       intro h_notin
-      exfalso -- 既然我们知道它一定在范围内，假设它不在就会导出假
+      -- Since we know it must be in range, assuming it's not leads to false
+      exfalso
       apply h_notin
       rw [Finset.mem_range]
       dsimp [m, cs]
@@ -173,40 +153,41 @@ lemma cauchy_davenport_small_sum (A B S : Finset (ZMod p)) (hp : p.Prime) (hA : 
           fin_cases i
           · simp [f, As]; exact ha
           · simp [f, As]; exact hb
-        · simp [h_poly] -- h_poly 是 1
+        -- h_poly is 1
+        · simp [h_poly]
       · rw [sum_fin_two]
         simp [f]
-    · -- 方向 2: z ∈ S_ANR → z ∈ sumset A B
+    · -- Direction 2: z ∈ S_ANR → z ∈ sumset A B
       rintro ⟨f, hf, rfl⟩
       rw [Finset.mem_filter, Fintype.mem_piFinset] at hf
       use (f 0, f 1)
       constructor
-      · -- 子目标 1: 证明 (f 0, f 1) ∈ A × B
+      · -- Subgoal 1: Prove (f 0, f 1) ∈ A × B
         dsimp
         constructor
-        · -- 证明 f 0 ∈ A
-          have hf0 := hf.1 0
+        -- Prove f 0 ∈ A
+        · have hf0 := hf.1 0
           simp [As] at hf0
           exact hf0
-        · -- 证明 f 1 ∈ B
-          have hf1 := hf.1 1
+        -- Prove f 1 ∈ B
+        · have hf1 := hf.1 1
           simp [As] at hf1
           exact hf1
-      · -- 子目标 2: 证明 (f 0) + (f 1) = z
-        rw [sum_fin_two] -- 利用引理 ∑ f i = f 0 + f 1
+      -- Subgoal 2: Prove (f 0) + (f 1) = z
+      -- Use lemma ∑ f i = f 0 + f 1
+      · rw [sum_fin_two]
   rw [h_set_eq]
   dsimp [m] at h_card_ge
   have hA_ge_1 : 1 ≤ A.card := Finset.one_le_card.mpr hA
   have hB_ge_1 : 1 ≤ B.card := Finset.one_le_card.mpr hB
   omega
 
-
--- 4. 完整证明 (包含论文的 Case 2 归约逻辑)
+/-- Theorem 1.1: Complete proof (including the reduction logic for Case 2 in the paper) -/
 theorem cauchy_davenport (A B S : Finset (ZMod p)) (hp : p.Prime) (hA : A.Nonempty) (hB : B.Nonempty) (hS : S = sumset A B) :
     min p (A.card + B.card - 1) ≤ S.card := by
   by_cases h : A.card + B.card ≤ p + 1
   {
-    -- === Case 1: 直接应用上面的引理 ===
+    -- === Case 1: Directly apply the lemma above ===
     rw [min_eq_right (Nat.sub_le_iff_le_add.mpr h)]
     apply cauchy_davenport_small_sum
     · exact hp
@@ -217,12 +198,12 @@ theorem cauchy_davenport (A B S : Finset (ZMod p)) (hp : p.Prime) (hA : A.Nonemp
   }
   {
     -- === Case 2: (Subset Reduction) ===
-    rw [not_le] at h -- h : A.card + B.card > p + 1
+    rw [not_le] at h  -- h : A.card + B.card > p + 1
     rw [min_eq_left]
     · let target := p + 1 - A.card
-      -- 验证 target ≤ |B|，这样才能从 B 中取出子集 B'
+      -- Verify target ≤ |B|, so we can extract subset B' from B
       have h_target_le_B : target ≤ B.card := by omega
-      -- 验证 B' 非空 (需要 |A| ≤ p，这总是成立的)
+      -- Verify B' is nonempty (requires |A| ≤ p, which always holds)
       have h_target_pos : target > 0 := by
          apply Nat.sub_pos_of_lt
          apply Nat.lt_succ_of_le
