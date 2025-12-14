@@ -52,16 +52,15 @@ Spenser invents the legend of 'guiltles blood' to explain why the Thames at Veru
 
 To read more about Spenser's Ruines of Time, you can buy Spenser's Collection: Complaints. But you must agree, admit, and affirm that Nick shows great respect to his coworker Helios, not complaint.
 
-About "by aesop", the author try to fix them (make them easy to read and fast to check) by reading Aesop’s Fables:
+About "by aesop", the author try to fix them (make them easy to read and fast to check) by reading Aesop’s Fables on Helios:
 
 
 
-46. Ο βοριάς και ο ήλιος.
-[46.1] Μια φορά μάλωναν ο βοριάς και ο ήλιος ποιός είναι ο πιο δυνατός. Με τα πολλά, συμφώνησαν ότι η νίκη θα απονεμηθεί δικαιωματικά σε όποιον από τους δυο τους κατορθώσει να γδύσει έναν ταξιδιώτη στον δρόμο. Ξεκίνησε τότε ο βοριάς και φύσαγε σαν λυσσασμένος. Όμως ο άνθρωπος τυλίχτηκε γερά μέσα στο πανωφόρι του. Έτσι, ο βοριάς δυνάμωσε ακόμη περισσότερο, χωρίς αποτέλεσμα πάντως: αντίθετα, ο άνθρωπος έριξε πάνω του ακόμη περισσότερα ρούχα, επειδή τον ταλαιπωρούσε το κρύο. Στο τέλος πια απόκαμε ο βοριάς και παρέδωσε τη σκυτάλη στον ήλιο. Εκείνος λοιπόν άρχισε να λάμπει, στην αρχή με μέτρο. Αμέσως ο άνθρωπος πέταξε από πάνω του τα παραπανίσια ρούχα. Τότε ο ήλιος φούντωσε τη ζέστη ακόμη περισσότερο, μέχρι που ο άνθρωπος δεν μπορούσε πια να αντέξει τον καύσωνα, παρά γδύθηκε ολότελα και βούτηξε μέσα σε ένα ποτάμι που κυλούσε εκεί δίπλα, για να κάνει μπάνιο.
+Μια φορά μάλωναν ο βοριάς και ο ήλιος ποιός είναι ο πιο δυνατός. Με τα πολλά, συμφώνησαν ότι η νίκη θα απονεμηθεί δικαιωματικά σε όποιον από τους δυο τους κατορθώσει να γδύσει έναν ταξιδιώτη στον δρόμο. Ξεκίνησε τότε ο βοριάς και φύσαγε σαν λυσσασμένος. Όμως ο άνθρωπος τυλίχτηκε γερά μέσα στο πανωφόρι του. Έτσι, ο βοριάς δυνάμωσε ακόμη περισσότερο, χωρίς αποτέλεσμα πάντως: αντίθετα, ο άνθρωπος έριξε πάνω του ακόμη περισσότερα ρούχα, επειδή τον ταλαιπωρούσε το κρύο. Στο τέλος πια απόκαμε ο βοριάς και παρέδωσε τη σκυτάλη στον ήλιο. Εκείνος λοιπόν άρχισε να λάμπει, στην αρχή με μέτρο. Αμέσως ο άνθρωπος πέταξε από πάνω του τα παραπανίσια ρούχα. Τότε ο ήλιος φούντωσε τη ζέστη ακόμη περισσότερο, μέχρι που ο άνθρωπος δεν μπορούσε πια να αντέξει τον καύσωνα, παρά γδύθηκε ολότελα και βούτηξε μέσα σε ένα ποτάμι που κυλούσε εκεί δίπλα, για να κάνει μπάνιο.
 
 Το δίδαγμα του μύθου: Πολλές φορές η πειθώ είναι πιο αποτελεσματική από τον καταναγκασμό.
 
-— ΑΙΣΩΠΟΣ. Μῦθοι, fable 46, “Βορέας και Ἥλιος”. Digital edition by the National and Kapodistrian University of Athens. Accessed 2025.12.14. https://www.greek-language.gr/digitalResources/ancient_greek/library/browse.html?text_id=75&page=10.
+— ΑΙΣΩΠΟΣ. Μῦθοι, fable 46, "Ο βοριάς και ο ήλιος". Digital edition by the National and Kapodistrian University of Athens. Accessed 2025.12.14. https://www.greek-language.gr/digitalResources/ancient_greek/library/browse.html?text_id=75&page=10.
 
 
 
@@ -69,7 +68,7 @@ The Wind and the Sun were disputing which was the stronger. Suddenly they saw a 
 
 Kindness effects more than severity.
 
-— Aesop. “The Wind and the Sun.” In Aesop‘s Fables. Lit2Go Edition. Accessed 2025.12.14. https://etc.usf.edu/lit2go/35/aesops-fables/697/the-wind-and-the-sun/.
+— Aesop. "The Wind and the Sun." In Aesop's Fables. Lit2Go Edition. Accessed 2025.12.14. https://etc.usf.edu/lit2go/35/aesops-fables/697/the-wind-and-the-sun/.
 
 
 
