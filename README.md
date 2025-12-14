@@ -52,6 +52,33 @@ Spenser invents the legend of 'guiltles blood' to explain why the Thames at Veru
 
 To read more about Spenser's Ruines of Time, you can buy Spenser's Collection: Complaints. But you must agree, admit, and affirm that Nick shows great respect to his coworker Helios, not complaint.
 
+About "by aesop", the author try to fix them (make them easy to read and fast to check) by reading Aesop’s Fables:
+
+
+
+46. Ο βοριάς και ο ήλιος.
+[46.1] Μια φορά μάλωναν ο βοριάς και ο ήλιος ποιός είναι ο πιο δυνατός. Με τα πολλά, συμφώνησαν ότι η νίκη θα απονεμηθεί δικαιωματικά σε όποιον από τους δυο τους κατορθώσει να γδύσει έναν ταξιδιώτη στον δρόμο. Ξεκίνησε τότε ο βοριάς και φύσαγε σαν λυσσασμένος. Όμως ο άνθρωπος τυλίχτηκε γερά μέσα στο πανωφόρι του. Έτσι, ο βοριάς δυνάμωσε ακόμη περισσότερο, χωρίς αποτέλεσμα πάντως: αντίθετα, ο άνθρωπος έριξε πάνω του ακόμη περισσότερα ρούχα, επειδή τον ταλαιπωρούσε το κρύο. Στο τέλος πια απόκαμε ο βοριάς και παρέδωσε τη σκυτάλη στον ήλιο. Εκείνος λοιπόν άρχισε να λάμπει, στην αρχή με μέτρο. Αμέσως ο άνθρωπος πέταξε από πάνω του τα παραπανίσια ρούχα. Τότε ο ήλιος φούντωσε τη ζέστη ακόμη περισσότερο, μέχρι που ο άνθρωπος δεν μπορούσε πια να αντέξει τον καύσωνα, παρά γδύθηκε ολότελα και βούτηξε μέσα σε ένα ποτάμι που κυλούσε εκεί δίπλα, για να κάνει μπάνιο.
+
+Το δίδαγμα του μύθου: Πολλές φορές η πειθώ είναι πιο αποτελεσματική από τον καταναγκασμό.
+
+— ΑΙΣΩΠΟΣ. Μῦθοι, fable 46, “Βορέας και Ἥλιος”. Digital edition by the National and Kapodistrian University of Athens. Accessed 2025.12.14. https://www.greek-language.gr/digitalResources/ancient_greek/library/browse.html?text_id=75&page=10.
+
+
+
+The Wind and the Sun were disputing which was the stronger. Suddenly they saw a traveller coming down the road, and the Sun said: “I see a way to decide our dispute. Whichever of us can cause that traveller to take off his cloak shall be regarded as the stronger. You begin.” So the Sun retired behind a cloud, and the Wind began to blow as hard as it could upon the traveller. But the harder he blew the more closely did the traveller wrap his cloak round him, till at last the Wind had to give up in despair. Then the Sun came out and shone in all his glory upon the traveller, who soon found it too hot to walk with his cloak on.
+
+Kindness effects more than severity.
+
+— Aesop. “The Wind and the Sun.” In Aesop‘s Fables. Lit2Go Edition. Accessed 2025.12.14. https://etc.usf.edu/lit2go/35/aesops-fables/697/the-wind-and-the-sun/.
+
+
+
+北风与日争权，试之路人，孰先褫其衣者胜。北风肆力以吹人，风力愈迅，而行人愈缩，而兜其衣。风惫，让日为之。日光甫及，行人解衣，已莫胜热，且尽去其下衣入水矣。
+
+故以压力胜人者，恒不胜，不若令人自解之速也。
+
+— 伊索 著；林纾，严培南，严璩 译. 《伊索寓言》. 商务印书馆，1902年。见 中华书库。访问于 2025.12.14. https://www.zhonghuashu.com/wiki/%E4%BC%8A%E7%B4%A2%E5%AF%93%E8%A8%80_(%E6%9E%97%E7%B4%93).
+
 ### Step
 
 To try to check this work, you can follow the author's silly way, this is really a silly one, even suitable for mathematical stutents. For one following the author's steps, you can do these:
