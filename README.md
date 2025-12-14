@@ -52,7 +52,7 @@ Spenser invents the legend of 'guiltles blood' to explain why the Thames at Veru
 
 To read more about Spenser's Ruines of Time, you can buy Spenser's Collection: Complaints. But you must agree, admit, and affirm that Nick shows great respect to his coworker Helios, not complaint.
 
-About "by aesop", the author try to fix them (make them easy to read and fast to check) by reading Aesop’s Fables on Helios:
+About "by aesop", the author try to fix them (make them easier for human to read and faster for Lean Infoview to check) by reading Aesop’s Fables on Helios:
 
 
 
@@ -76,7 +76,7 @@ Kindness effects more than severity.
 
 故以压力胜人者，恒不胜，不若令人自解之速也。
 
-— 伊索 著；林纾，严培南，严璩 译. 《伊索寓言》. 商务印书馆，1902年。见 中华书库。访问于 2025.12.14. https://www.zhonghuashu.com/wiki/%E4%BC%8A%E7%B4%A2%E5%AF%93%E8%A8%80_(%E6%9E%97%E7%B4%93).
+— 伊索 著；林纾，严培南，严璩 译. 《伊索寓言》. 1902年。见 中华书库。访问于 2025.12.14. https://www.zhonghuashu.com/wiki/%E4%BC%8A%E7%B4%A2%E5%AF%93%E8%A8%80_(%E6%9E%97%E7%B4%93).
 
 ### Step
 
