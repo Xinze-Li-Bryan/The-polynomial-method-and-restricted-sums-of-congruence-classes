@@ -937,7 +937,7 @@ lemma elimination_polynomial_properties (A : Fin (k + 1) → Finset (ZMod p)) (i
             intros j hj_ne_i
             have h_deg_j : (elimination_polynomials A i).degreeOf j = 0 := by
               unfold elimination_polynomials
-              induction' (A i) using Finset.induction <;> aesop
+              induction' (A i) using Finset.induction <;> aesop -- If use `aesop?` to generate `simp_all`, the `a` in `h_deg_j_zero` will disappear.
               · norm_num [MvPolynomial.degreeOf]
               · -- Since $j \neq i$, the degree of $X_i - C a$ in $j$ is zero.
                 have h_deg_j_zero : MvPolynomial.degreeOf j (MvPolynomial.X i - MvPolynomial.C a) = 0 := by
@@ -971,7 +971,7 @@ lemma elimination_polynomial_properties (A : Fin (k + 1) → Finset (ZMod p)) (i
           rw [MvPolynomial.totalDegree]
           simp_all +decide [MvPolynomial.degreeOf_eq_sup]
           intro b hb; specialize h_deg_mono b hb; specialize h_total_deg; simp_all +decide [Finsupp.sum_fintype]
-          rw [Finset.sum_eq_single i] <;> aesop
+          rw [Finset.sum_eq_single i] <;> aesop -- `aesop?` generate three [apply] but none of them can work.
         exact h_deg_sub
 
 /-- Lemma 2.1.8 : A single step in the monomial reduction process, reducing the degree in variable `i` -/
