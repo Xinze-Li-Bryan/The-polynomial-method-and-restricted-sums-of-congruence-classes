@@ -80,7 +80,9 @@ Kindness effects more than severity.
 
 # About Lemma 3.1 and its story
 
-Lemma 3.1 (named restricted_sum_distinct_sizes) was written when the author took a glimpse of Gemini Meteor Shower on UTC+8 2025.12.16 18:45. At the time it clicked to the author that Aristotle has ever written Meteorologica, maybe Aristotle can help solve Lemma 3.1, surely it finished.
+Lemma 3.1 (named restricted_sum_distinct_sizes) was written when the author took a glimpse of a Meteor on UTC+8 2025.12.16 18:45. At the time it clicked to the author that Aristotle has ever written Meteorologica, maybe Aristotle can help solve Lemma 3.1, surely it finished.
+
+The Meteor was towards north. Obviously it was not from Gemini Meteor Shower because at that time it was from northest, not towards north. It was a Sporadic Meteor. But at the time of Meteor Shower, every good thing happened will be connected with Meteor Shower. So I name the file as GeminiMeteorShower.lean
 
 
 
