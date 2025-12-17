@@ -78,6 +78,16 @@ Kindness effects more than severity.
 
 — 伊索 著；林纾，严培南，严璩 译. 《伊索寓言》. 1902年。见 中华书库。访问于 2025.12.14. https://www.zhonghuashu.com/wiki/%E4%BC%8A%E7%B4%A2%E5%AF%93%E8%A8%80_(%E6%9E%97%E7%B4%93).
 
+# About Lemma 3.1 and its story
+
+Lemma 3.1 (named restricted_sum_distinct_sizes) was written when the author took a glimpse of Gemini Meteor Shower on UTC+8 2025.12.16 18:45. At the time it clicked to the author that Aristotle has ever written Meteorologica, maybe Aristotle can help solve Lemma 3.1, surely it finished.
+
+
+
+When the inflammable material is longer than it is broad sometimes it seems to throw off sparks as it burns... Then it is called a ‘goat’. When this does not happen it is a ‘torch’. But if the whole length of the exhalation is scattered in small parts and in many directions and in breadth and depth alike, we get what are called shooting-stars.
+
+— Aristotle. Meteorology. Translated by E. W. Webster. Oxford: Clarendon Press, 1923. Accessed 2025.12.17. https://classics.mit.edu/Aristotle/meteorology.1.i.html.
+
 ### Step
 
 To try to check this work, you can follow the author's silly way, this is really a silly one, even suitable for mathematical stutents. For one following the author's steps, you can do these:

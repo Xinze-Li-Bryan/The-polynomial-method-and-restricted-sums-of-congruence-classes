@@ -12,17 +12,6 @@ def falling_factorial (s : ℕ) (r : ℕ) : ℕ :=
   if r = 0 then 1
   else ∏ i ∈ range r, (s - i)
 
-/-- Polynomial P = (∑ xᵢ)^m * Vandermonde product -/
-noncomputable def polynomial_P (m : ℕ) : MvPolynomial (Fin (k+1)) ℚ :=
-  let S : MvPolynomial (Fin (k+1)) ℚ := ∑ i : Fin (k+1), X i
-  let V : MvPolynomial (Fin (k+1)) ℚ :=
-    ∏ i : Fin (k+1), ∏ j : Fin (k+1), if j < i then (X i - X j) else 1
-  S ^ m * V
-
-/-- Monomial expression = ∏ᵢ Xᵢ^{cᵢ} -/
-noncomputable def monomial_expr (c : Fin (k+1) → ℕ) : MvPolynomial (Fin (k+1)) ℚ :=
-  ∏ i : Fin (k+1), (X i) ^ (c i)
-
 /-- Vandermonde matrix (cᵢ^j) -/
 def vandermonde_matrix (c : Fin (k+1) → ℕ) : Matrix (Fin (k+1)) (Fin (k+1)) ℚ :=
   Matrix.of (fun i j : Fin (k+1) => (c i : ℚ) ^ (j : ℕ))
@@ -233,90 +222,92 @@ lemma coeff_term (c : Fin (k+1) → ℕ) (m : ℕ) (σ : Equiv.Perm (Fin (k+1)))
     MvPolynomial.coeff (toFinsupp c) ((∑ i : Fin (k+1), X i) ^ m * ∏ i : Fin (k+1), X i ^ (σ i : ℕ)) =
     if (∀ i, σ i ≤ c i) then (m.factorial : ℚ) / ∏ i : Fin (k+1), ((c i - (σ i : ℕ)).factorial : ℚ) else 0 := by
       rw [MvPolynomial.coeff_mul]
-      bound
-      · rw [Finset.sum_eq_single (toFinsupp (fun i => c i - (σ i : ℕ)), toFinsupp (fun i => (σ i : ℕ)))]
-        · norm_num +zetaDelta at *
-          rw [show (∏ i : Fin (k + 1), MvPolynomial.X i ^ (σ i : ℕ) : MvPolynomial (Fin (k + 1)) ℚ) = MvPolynomial.monomial (toFinsupp fun i => (σ i : ℕ)) 1 from ?_]
-          · rw [MvPolynomial.coeff_monomial]
-            simp_all only [↓reduceIte, mul_one]
-            -- Apply the multinomial theorem to expand $(\sum_{i=0}^k X_i)^m$.
-            have h_multinomial : (∑ i : Fin (k + 1), MvPolynomial.X i : MvPolynomial (Fin (k + 1)) ℚ) ^ m = ∑ d ∈ Finset.filter (fun d : Fin (k + 1) → ℕ => ∑ i, d i = m) (Finset.Iic (fun _ => m)), (Nat.factorial m / (∏ i, Nat.factorial (d i))) • (∏ i, (MvPolynomial.X i) ^ (d i)) := by
-              rw [Finset.sum_pow]
-              refine' Finset.sum_bij (fun d hd => fun i => Multiset.count i d) _ _ _ _ <;> aesop
-              · exact fun i => le_trans (Multiset.count_le_card _ _) (by simp)
-              · ext i
-                replace a := congr_fun a i
-                simp_all only
-              · refine' ⟨⟨Finset.univ.val.bind fun i => Multiset.replicate (b i) i, _⟩, _⟩ <;> aesop
-                · simp +decide [Fin.sum_univ_succ, List.sum_ofFn]
-                · ext i; simp +decide [Multiset.count_bind]
-                  induction i using Fin.inductionOn <;> simp_all (config := {decide := Bool.true}) [Multiset.count_replicate, List.sum_ofFn]
-                  exact fun h => absurd h (ne_of_lt (Fin.succ_pos _))
-              · simp +decide [Multiset.multinomial, Finset.prod_multiset_map_count]
-                simp +decide [Finsupp.multinomial, Finsupp.prod]
-                rw [Finset.prod_subset (Finset.subset_univ _)] <;> aesop
-                exact Or.inl (Finset.prod_subset (fun x hx => by aesop) fun x hx => by aesop)
-            -- Since $\sum_{i=0}^k (c_i - \sigma(i)) = m$, the coefficient of $X^{c-\sigma}$ in the multinomial expansion is $m! / \prod_{i=0}^k (c_i - \sigma(i))!$.
-            have h_coeff : ∑ i, (c i - (σ i : ℕ)) = m := by
-              zify at *
-              rw [Finset.sum_congr rfl fun _ _ => Nat.cast_sub <| by linarith [h ‹_›]] ;
-              simp_all only [Nat.cast_le, nsmul_eq_mul, sum_sub_distrib]
-              rw [Equiv.sum_comp σ fun x => (x : ℤ)] ; norm_num [Nat.choose_two_right] ; ring_nf
-              exact Eq.symm (Nat.recOn k (by norm_num) fun n ih => by norm_num [Fin.sum_univ_castSucc] at * ; linarith [Nat.div_mul_cancel (show 2 ∣ n + 1 + (n + 1) ^ 2 from even_iff_two_dvd.mp (by simp +arith +decide [parity_simps])), Nat.div_mul_cancel (show 2 ∣ n + (n) ^ 2 from even_iff_two_dvd.mp (by simp +arith +decide [parity_simps]))])
-            rw [h_multinomial, MvPolynomial.coeff_sum]
-            rw [Finset.sum_eq_single (fun i => c i - (σ i : ℕ))]
-            · norm_num [MvPolynomial.coeff_smul, MvPolynomial.coeff_X_pow, Finset.prod_pow_eq_pow_sum]
-              erw [MvPolynomial.coeff_C_mul]
-              rw [Nat.cast_div_charZero]
-              · rw [show (∏ i : Fin (k + 1), MvPolynomial.X i ^ (c i - (σ i : ℕ)) : MvPolynomial (Fin (k + 1)) ℚ) = MvPolynomial.monomial (toFinsupp fun i => c i - (σ i : ℕ)) 1 from ?_]
-                · norm_num [MvPolynomial.coeff_monomial]
-                · simp +decide [MvPolynomial.monomial_eq, Finset.prod_pow_eq_pow_sum]
-                  rfl
-              · rw [← h_coeff]
-                norm_num +zetaDelta at *
-                exact Nat.prod_factorial_dvd_factorial_sum univ fun i => c i - ↑(σ i)
-            · intro d hd hd'; rw [MvPolynomial.coeff_smul] ; simp_all (config := {decide := Bool.true}) [MvPolynomial.coeff_monomial]
-              rw [show (∏ i : Fin (k + 1), MvPolynomial.X i ^ d i : MvPolynomial (Fin (k + 1)) ℚ) = MvPolynomial.monomial (toFinsupp d) 1 from ?_]
+      split
+      next h =>
+          rw [Finset.sum_eq_single (toFinsupp (fun i => c i - (σ i : ℕ)), toFinsupp (fun i => (σ i : ℕ)))]
+          · norm_num +zetaDelta at *
+            rw [show (∏ i : Fin (k + 1), MvPolynomial.X i ^ (σ i : ℕ) : MvPolynomial (Fin (k + 1)) ℚ) = MvPolynomial.monomial (toFinsupp fun i => (σ i : ℕ)) 1 from ?_]
+            · rw [MvPolynomial.coeff_monomial]
+              simp_all only [↓reduceIte, mul_one]
+              -- Apply the multinomial theorem to expand $(\sum_{i=0}^k X_i)^m$.
+              have h_multinomial : (∑ i : Fin (k + 1), MvPolynomial.X i : MvPolynomial (Fin (k + 1)) ℚ) ^ m = ∑ d ∈ Finset.filter (fun d : Fin (k + 1) → ℕ => ∑ i, d i = m) (Finset.Iic (fun _ => m)), (Nat.factorial m / (∏ i, Nat.factorial (d i))) • (∏ i, (MvPolynomial.X i) ^ (d i)) := by
+                rw [Finset.sum_pow]
+                refine' Finset.sum_bij (fun d hd => fun i => Multiset.count i d) _ _ _ _ <;> aesop
+                · exact fun i => le_trans (Multiset.count_le_card _ _) (by simp)
+                · ext i
+                  replace a := congr_fun a i
+                  simp_all only
+                · refine' ⟨⟨Finset.univ.val.bind fun i => Multiset.replicate (b i) i, _⟩, _⟩ <;> aesop
+                  · simp +decide [Fin.sum_univ_succ, List.sum_ofFn]
+                  · ext i; simp +decide [Multiset.count_bind]
+                    induction i using Fin.inductionOn <;> simp_all (config := {decide := Bool.true}) [Multiset.count_replicate, List.sum_ofFn]
+                    exact fun h => absurd h (ne_of_lt (Fin.succ_pos _))
+                · simp +decide [Multiset.multinomial, Finset.prod_multiset_map_count]
+                  simp +decide [Finsupp.multinomial, Finsupp.prod]
+                  rw [Finset.prod_subset (Finset.subset_univ _)] <;> aesop
+                  exact Or.inl (Finset.prod_subset (fun x hx => by aesop) fun x hx => by aesop)
+              -- Since $\sum_{i=0}^k (c_i - \sigma(i)) = m$, the coefficient of $X^{c-\sigma}$ in the multinomial expansion is $m! / \prod_{i=0}^k (c_i - \sigma(i))!$.
+              have h_coeff : ∑ i, (c i - (σ i : ℕ)) = m := by
+                zify at *
+                rw [Finset.sum_congr rfl fun _ _ => Nat.cast_sub <| by linarith [h ‹_›]] ;
+                simp_all only [Nat.cast_le, nsmul_eq_mul, sum_sub_distrib]
+                rw [Equiv.sum_comp σ fun x => (x : ℤ)] ; norm_num [Nat.choose_two_right] ; ring_nf
+                exact Eq.symm (Nat.recOn k (by norm_num) fun n ih => by norm_num [Fin.sum_univ_castSucc] at * ; linarith [Nat.div_mul_cancel (show 2 ∣ n + 1 + (n + 1) ^ 2 from even_iff_two_dvd.mp (by simp +arith +decide [parity_simps])), Nat.div_mul_cancel (show 2 ∣ n + (n) ^ 2 from even_iff_two_dvd.mp (by simp +arith +decide [parity_simps]))])
+              rw [h_multinomial, MvPolynomial.coeff_sum]
+              rw [Finset.sum_eq_single (fun i => c i - (σ i : ℕ))]
+              · norm_num [MvPolynomial.coeff_smul, MvPolynomial.coeff_X_pow, Finset.prod_pow_eq_pow_sum]
+                erw [MvPolynomial.coeff_C_mul]
+                rw [Nat.cast_div_charZero]
+                · rw [show (∏ i : Fin (k + 1), MvPolynomial.X i ^ (c i - (σ i : ℕ)) : MvPolynomial (Fin (k + 1)) ℚ) = MvPolynomial.monomial (toFinsupp fun i => c i - (σ i : ℕ)) 1 from ?_]
+                  · norm_num [MvPolynomial.coeff_monomial]
+                  · simp +decide [MvPolynomial.monomial_eq]
+                    rfl
+                · rw [← h_coeff]
+                  norm_num +zetaDelta at *
+                  exact Nat.prod_factorial_dvd_factorial_sum univ fun i => c i - ↑(σ i)
+              · intro d hd hd'; rw [MvPolynomial.coeff_smul] ; simp_all (config := {decide := Bool.true})
+                rw [show (∏ i : Fin (k + 1), MvPolynomial.X i ^ d i : MvPolynomial (Fin (k + 1)) ℚ) = MvPolynomial.monomial (toFinsupp d) 1 from ?_]
+                · simp +zetaDelta at *
+                  contrapose! hd'
+                  ext i; replace hd' := congr_arg (fun f => f i) hd'.2; aesop
+                · simp (config := {decide := Bool.true}) [MvPolynomial.monomial_eq]
+                  unfold toFinsupp; aesop
               · simp +zetaDelta at *
-                contrapose! hd'
-                ext i; replace hd' := congr_arg (fun f => f i) hd'.2; aesop
-              · simp (config := {decide := Bool.true}) [MvPolynomial.monomial_eq, Finset.prod_pow_eq_pow_sum]
-                unfold toFinsupp; aesop
-            · simp +zetaDelta at *
-              exact fun h => False.elim <| h (fun i => h_coeff ▸ Finset.single_le_sum (fun a _ => Nat.zero_le (c a - (σ a : ℕ))) (Finset.mem_univ i)) h_coeff
-          · rw [MvPolynomial.monomial_eq]
-            simp_all only [C_1, Finsupp.prod_pow, one_mul]
-            rfl
-        · intro b a a_1
-          simp_all only [mem_antidiagonal, ne_eq, mul_eq_zero]
-          obtain ⟨fst, snd⟩ := b
-          simp_all only [Prod.mk.injEq, not_and]
-          contrapose! a_1
-          -- By definition of $snd$, we know that $snd(i) = \sigma(i)$ for all $i$.
-          have hsnd : ∀ i, snd i = (σ i : ℕ) := by
-            intro i; specialize a_1; replace a := congr_arg (fun f => f i) a;
-            simp_all only [ne_eq, Finsupp.coe_add, Pi.add_apply]
-            obtain ⟨left, right⟩ := a_1
-            -- Since snd is a monomial in the product of X_i^(σ i), its support is exactly the set of indices where σ i is non-zero. Therefore, (snd i) must equal (σ i : ℕ).
-            have h_snd_support : snd = ∑ i, Finsupp.single i (σ i : ℕ) := by
-              simp_all (config := {decide := Bool.true}) [MvPolynomial.X_pow_eq_monomial]
-              -- Since snd is a monomial in the product of X_i^(σ i), its support is exactly the set of indices where σ i is non-zero. Therefore, snd must be equal to the sum of the singletons of σ i.
+                exact fun h => False.elim <| h (fun i => h_coeff ▸ Finset.single_le_sum (fun a _ => Nat.zero_le (c a - (σ a : ℕ))) (Finset.mem_univ i)) h_coeff
+            · rw [MvPolynomial.monomial_eq]
+              simp_all only [C_1, Finsupp.prod_pow, one_mul]
+              rfl
+          · intro b a a_1
+            simp_all only [mem_antidiagonal, ne_eq, mul_eq_zero]
+            obtain ⟨fst, snd⟩ := b
+            simp_all only [Prod.mk.injEq, not_and]
+            contrapose! a_1
+            -- By definition of $snd$, we know that $snd(i) = \sigma(i)$ for all $i$.
+            have hsnd : ∀ i, snd i = (σ i : ℕ) := by
+              intro i; specialize a_1; replace a := congr_arg (fun f => f i) a;
+              simp_all only [ne_eq, Finsupp.coe_add, Pi.add_apply]
+              obtain ⟨left, right⟩ := a_1
+              -- Since snd is a monomial in the product of X_i^(σ i), its support is exactly the set of indices where σ i is non-zero. Therefore, (snd i) must equal (σ i : ℕ).
               have h_snd_support : snd = ∑ i, Finsupp.single i (σ i : ℕ) := by
-                have h_prod : ∏ i, (MvPolynomial.monomial (Finsupp.single i (σ i : ℕ)) 1 : MvPolynomial (Fin (k + 1)) ℚ) = MvPolynomial.monomial (∑ i, Finsupp.single i (σ i : ℕ)) 1 := by
-                  induction' (Finset.univ : Finset (Fin (k + 1))) using Finset.induction <;> aesop
-                simp_all only [coeff_monomial, ite_eq_right_iff, one_ne_zero, imp_false, Decidable.not_not]
-              exact h_snd_support
-            simp +decide [h_snd_support, Finsupp.single_apply]
-          simp_all +decide [Finsupp.ext_iff, toFinsupp]
-          exact fun i => eq_tsub_of_add_eq <| a i
-        · contrapose!
-          unfold toFinsupp
-          intro a
-          simp_all
-          obtain ⟨left, right⟩ := a
-          ext a : 1
-          simp_all only [Finsupp.coe_add, Finsupp.coe_mk, Pi.add_apply, Nat.sub_add_cancel]
-      · rw [Finset.sum_eq_zero]
+                simp_all (config := {decide := Bool.true}) [MvPolynomial.X_pow_eq_monomial]
+                -- Since snd is a monomial in the product of X_i^(σ i), its support is exactly the set of indices where σ i is non-zero. Therefore, snd must be equal to the sum of the singletons of σ i.
+                have h_snd_support : snd = ∑ i, Finsupp.single i (σ i : ℕ) := by
+                  have h_prod : ∏ i, (MvPolynomial.monomial (Finsupp.single i (σ i : ℕ)) 1 : MvPolynomial (Fin (k + 1)) ℚ) = MvPolynomial.monomial (∑ i, Finsupp.single i (σ i : ℕ)) 1 := by
+                    induction' (Finset.univ : Finset (Fin (k + 1))) using Finset.induction <;> aesop
+                  simp_all only [coeff_monomial, ite_eq_right_iff, one_ne_zero, imp_false, Decidable.not_not]
+                exact h_snd_support
+              simp +decide [h_snd_support, Finsupp.single_apply]
+            simp_all +decide [Finsupp.ext_iff, toFinsupp]
+            exact fun i => eq_tsub_of_add_eq <| a i
+          · contrapose!
+            unfold toFinsupp
+            intro a
+            simp_all
+            obtain ⟨left, right⟩ := a
+            ext a : 1
+            simp_all only [Finsupp.coe_add, Finsupp.coe_mk, Pi.add_apply, Nat.sub_add_cancel]
+      next h =>
+        rw [Finset.sum_eq_zero]
         intros
         rename_i x a
         simp_all only [not_forall, not_le, mem_antidiagonal, mul_eq_zero]
@@ -333,7 +324,8 @@ lemma coeff_term (c : Fin (k+1) → ℕ) (m : ℕ) (σ : Equiv.Perm (Fin (k+1)))
           linarith
         rw [Finset.prod_eq_prod_diff_singleton_mul <| Finset.mem_univ w]
         rw [MvPolynomial.coeff_mul]
-        bound
+        have fwd : LE.le (α := ℕ) (snd w : ℕ) (σ w : Fin (k + 1)).1 := le_of_lt h_snd_w
+        have fwd_1 : c w ≤ (σ w).1 := le_of_lt h
         refine Or.inr <| Finset.sum_eq_zero fun x hx => ?_
         simp_all only [mem_antidiagonal, mul_eq_zero]
         subst hx
