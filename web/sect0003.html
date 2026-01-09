@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>General Polynomial Method Theorem</title>
+<link rel="next" href="sect0004.html" title="Cauchy-Davenport Theorem Proof" />
+<link rel="prev" href="sect0002.html" title="Preliminaries" />
+<link rel="up" href="index.html" title="The Polynomial Method and Restricted Sums of Congruence Classes" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">The Polynomial Method and Restricted Sums of Congruence Classes</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Introduction</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Preliminaries</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">General Polynomial Method Theorem</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Cauchy-Davenport Theorem Proof</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Distinct Residues Sums</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Further Applications</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Concluding Remarks</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Bibliography</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000004">3 General Polynomial Method Theorem</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="a0000000021">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">7</span>
+    <span class="theorem_thmtitle">General Theorem 2.1</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0003.html#a0000000021">#</a>
+    
+    <a class="icon proof" href="sect0003.html#a0000000022"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p> Let \(p\) be a prime and let \(h=h(x_{0},\ldots ,x_{k})\) be a polynomial over \(\mathbb {Z}_p\). Let \(A_{0},A_{1},\ldots ,A_{k}\) be nonempty subsets of \(\mathbb {Z}_p\), where \(|A_{i}|=c_{i}+1\) and define \(m=\sum _{i=0}^{k}c_{i}-\deg (h).\) If the coefficient of \(\prod _{i=0}^{k}x_{i}^{c_{i}}\) in </p>
+<div class="displaymath" id="a0000000023">
+  \[  (x_{0}+x_{1}+\cdots +x_{k})^{m}h(x_{0},x_{1},\ldots ,x_{k})  \]
+</div>
+<p> is nonzero (in \(\mathbb {Z}_p\)) then </p>
+<div class="displaymath" id="a0000000024">
+  \[  |\oplus _h\sum _{i=0}^{k}A_{i}|\geq m+1  \]
+</div>
+<p> (and hence \(m{\lt}p\)). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000022">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Suppose the assertion is false, and let \(E\) be a multiset of \(m\) elements of \(\mathbb {Z}_p\) that contains \(\oplus _h\sum _{i=0}^{k}A_{i}\). Let </p>
+<div class="displaymath" id="a0000000025">
+  \[  Q(x_{0},\ldots ,x_{k})=h(x_{0},\ldots ,x_{k})\cdot \prod _{e\in E}(x_{0}+\ldots +x_{k}-e).  \]
+</div>
+<p> Then \(Q(x_{0},\ldots ,x_{k})=0\) for all \((x_{0},\ldots ,x_{k})\in A_{0}\times \cdots \times A_{k}\). The degree of \(Q\) is \(\sum _{i=0}^{k}c_{i}\). </p>
+<p>For each \(i\), define \(g_{i}(x_{i})=\prod _{a\in A_{i}}(x_{i}-a)=x_{i}^{c_{i}+1}-\sum _{j=0}^{c_{i}}b_{ij}x_{i}^{j}\). Let \(\overline{Q}\) be obtained from \(Q\) by replacing each \(x_{i}^{c_{i}+1}\) with \(\sum _{j=0}^{c_{i}}b_{ij}x_{i}^{j}\). Then \(\overline{Q}\) vanishes on \(A_{0}\times \cdots \times A_{k}\) and has \(x_{i}\)-degree at most \(c_{i}\). By Lemma 2.2, \(\overline{Q}\equiv 0\). </p>
+<p>However, the coefficient of \(\prod _{i=0}^{k}x_{i}^{c_{i}}\) in \(\overline{Q}\) equals its coefficient in \(Q\), which is nonzero by assumption. This contradiction proves the theorem. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0002.html" title="Preliminaries"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="The Polynomial Method and Restricted Sums of Congruence Classes"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0004.html" title="Cauchy-Davenport Theorem Proof"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>
