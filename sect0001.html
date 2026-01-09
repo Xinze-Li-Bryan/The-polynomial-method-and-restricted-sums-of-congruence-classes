@@ -12,15 +12,21 @@
 <meta name="generator" content="plasTeX" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Distinct Residues Sums</title>
-<link rel="next" href="sect0006.html" title="Further Applications" />
-<link rel="prev" href="sect0004.html" title="Cauchy-Davenport Theorem Proof" />
+<title>Introduction</title>
+<link rel="next" href="sect0002.html" title="Preliminaries" />
+<link rel="prev" href="index.html" title="The Polynomial Method and Restricted Sums of Congruence Classes" />
 <link rel="up" href="index.html" title="The Polynomial Method and Restricted Sums of Congruence Classes" />
 <link rel="stylesheet" href="styles/theme-white.css" />
 <link rel="stylesheet" href="styles/amsthm.css" />
 <link rel="stylesheet" href="styles/showmore.css" />
 <link rel="stylesheet" href="styles/blueprint.css" />
 <link rel="stylesheet" href="styles/extra_styles.css" />
+<link rel="stylesheet" href="styles/blueprint.css">
+<link rel="stylesheet" href="styles/showmore.css">
+<link rel="stylesheet" href="styles/dep_graph.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/showmore.js"></script>
+<script src="js/plastex.js"></script>
 </head>
 
 <body>
@@ -32,7 +38,7 @@
 <div class="wrapper">
 <nav class="toc">
 <ul class="sub-toc-0">
-<li class="">
+<li class=" active current">
   <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Introduction</span></a>
  </li>
 <li class="">
@@ -44,7 +50,7 @@
 <li class="">
   <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Cauchy-Davenport Theorem Proof</span></a>
  </li>
-<li class=" active current">
+<li class="">
   <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Distinct Residues Sums</span></a>
  </li>
 <li class="">
@@ -65,101 +71,83 @@
 
 
 <div class="main-text">
-<h1 id="a0000000006">5 Distinct Residues Sums</h1>
-<div class="lemma_thmwrapper theorem-style-plain" id="a0000000027">
-  <div class="lemma_thmheading">
-    <span class="lemma_thmcaption">
-    Lemma
-    </span>
-    <span class="lemma_thmlabel">9</span>
-    <span class="lemma_thmtitle">Lemma 3.1</span>
-    <div class="thm_header_extras">
-
-        </div>
-    <div class="thm_header_hidden_extras">
-
-    <a class="icon proof" href="sect0005.html#a0000000027">#</a>
-    
-    <a class="icon proof" href="sect0005.html#a0000000028"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
-</a>
-    
-    
-    
-        </div>
-  </div>
-  <div class="lemma_thmcontent">
-  <p> Let \(c_{0},\ldots ,c_{k}\) be nonnegative integers and suppose \(\sum _{i=0}^{k}c_{i}=m+\binom {k+1}{2}\), where \(m\) is a nonnegative integer. Then the coefficient of \(\prod _{i=0}^{k}x_{i}^{c_{i}}\) in the polynomial </p>
-<div class="displaymath" id="a0000000029">
-  \[  (x_{0}+x_{1}+\ldots +x_{k})^{m}\prod _{k\geq i{\gt}j\geq 0}(x_{i}-x_{j})  \]
-</div>
-<p> is </p>
-<div class="displaymath" id="a0000000030">
-  \[  \frac{m!}{c_{0}!c_{1}!\ldots c_{k}!}\prod _{k\geq i{\gt}j\geq 0}(c_{i}-c_{j}).  \]
-</div>
-
-  </div>
-</div>
-<div class="proof_wrapper" id="a0000000028">
-  <div class="proof_heading">
-    <span class="proof_caption">
-    Proof
-    </span>
-    <span class="expand-proof">▶</span>
-  </div>
-  <div class="proof_content">
-  <p>The product \(\prod _{k\geq i{\gt}j\geq 0}(x_{i}-x_{j})\) is the Vandermonde determinant \(\det (x_{i}^{j})_{0\leq i\leq k,0\leq j\leq k}\). The result follows by combinatorial manipulation. </p>
-
-  </div>
-</div>
-<div class="theorem_thmwrapper theorem-style-plain" id="a0000000031">
+<h1 id="a0000000002">1 Introduction</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="a0000000010">
   <div class="theorem_thmheading">
     <span class="theorem_thmcaption">
     Theorem
     </span>
-    <span class="theorem_thmlabel">10</span>
-    <span class="theorem_thmtitle">Proposition 1.2 Proof</span>
+    <span class="theorem_thmlabel">1</span>
+    <span class="theorem_thmtitle">Cauchy-Davenport Theorem</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0005.html#a0000000031">#</a>
+    <a class="icon proof" href="sect0001.html#a0000000010">#</a>
     
     
     
         </div>
   </div>
   <div class="theorem_thmcontent">
-  <p> Define \(h(x_{0},\ldots ,x_{k})=\prod _{k\geq i{\gt}j\geq 0}(x_{i}-x_{j})\). Suppose \(|A_{i}|=c_{i}+1\) and put \(m=\sum _{i=0}^{k}c_{i}-\binom {k+1}{2}\). By Lemma 3.1 the coefficient of \(\prod _{i=0}^{k}x_{i}^{c_{i}}\) in \(h\cdot (x_{0}+\ldots +x_{k})^{m}\) is </p>
-<div class="displaymath" id="a0000000032">
-  \[  \frac{m!}{c_{0}!c_{1}!\ldots c_{k}!}\prod _{k\geq i{\gt}j\geq 0}(c_{i}-c_{j}),  \]
+  <p> Let \(p\) be a prime and \(A,B\) be nonempty subsets of the cyclic group \(\mathbb {Z}_p\). Then </p>
+<div class="displaymath" id="a0000000011">
+  \[  |A+B| \geq \min \{ p, |A|+|B|-1\} ,  \]
 </div>
-<p> which is nonzero modulo \(p\) since \(m{\lt}p\) and the \(c_{i}\) are pairwise distinct. Theorem 2.1 gives the result. </p>
+<p> where \(A+B = \{ a+b: a\in A, b\in B\} \). </p>
 
   </div>
 </div>
-<div class="theorem_thmwrapper theorem-style-plain" id="a0000000033">
-  <div class="theorem_thmheading">
-    <span class="theorem_thmcaption">
-    Theorem
+<p>The polynomial method provides a unified approach to various problems in additive number theory. </p>
+<div class="proposition_thmwrapper theorem-style-plain" id="a0000000012">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
     </span>
-    <span class="theorem_thmlabel">11</span>
-    <span class="theorem_thmtitle">Theorem 3.2</span>
+    <span class="proposition_thmlabel">2</span>
+    <span class="proposition_thmtitle">Proposition 1.2</span>
     <div class="thm_header_extras">
 
         </div>
     <div class="thm_header_hidden_extras">
 
-    <a class="icon proof" href="sect0005.html#a0000000033">#</a>
+    <a class="icon proof" href="sect0001.html#a0000000012">#</a>
+    
+    
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p> Let \(p\) be a prime, and let \(A_{0},A_{1},\ldots ,A_{k}\) be nonempty subsets of the cyclic group \(\mathbb {Z}_p\). If \(|A_{i}|\neq |A_{j}|\) for all \(0\leq i{\lt}j\leq k\) and \(\sum _{i=0}^{k}|A_{i}|\leq p+\binom {k+2}{2}-1\) then </p>
+<div class="displaymath" id="a0000000013">
+  \[  |\{ a_{0}+a_{1}+\ldots +a_{k}:a_{i}\in A_{i},a_{i}\neq a_{j}\  \text{for all}\  i\neq j\} |\geq \sum _{i=0}^{k}|A_{i}|-\binom {k+2}{2}+1.  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="a0000000014">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">3</span>
+    <span class="theorem_thmtitle">Theorem 1.3, Erdős-Heilbronn Conjecture</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0001.html#a0000000014">#</a>
     
     
     
         </div>
   </div>
   <div class="theorem_thmcontent">
-  <p> Let \(p\) be a prime, and let \(A_{0},\ldots ,A_{k}\) be nonempty subsets of \(\mathbb {Z}_p\), where \(|A_{i}|=b_{i}\), and suppose \(b_{0}\geq b_{1}\ldots \geq b_{k}\). Define \(b^{\prime }_{0},\ldots ,b^{\prime }_{k}\) by \(b^{\prime }_{0}=b_{0}\) and \(b^{\prime }_{i}=\min \{ b^{\prime }_{i-1}-1,b_{i}\} \) for \(1\leq i\leq k\). If \(b^{\prime }_{k}{\gt}0\) then </p>
-<div class="displaymath" id="a0000000034">
-  \[  |\oplus _{i=0}^{k}A_{i}|\geq \min \{ p,\sum _{i=0}^{k}b^{\prime }_{i}-\binom {k+2}{2}+1\} .  \]
+  <p> If \(p\) is a prime, and \(A\) is a nonempty subset of \(\mathbb {Z}_p\), then </p>
+<div class="displaymath" id="a0000000015">
+  \[  |\{ a+a^{\prime }:a,a^{\prime }\in A,a\neq a^{\prime }\} |\geq \min \{ p,2|A|-3\} .  \]
 </div>
 
   </div>
@@ -175,11 +163,11 @@
 
   <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
 
-  <a href="sect0004.html" title="Cauchy-Davenport Theorem Proof"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+  <a href="index.html" title="The Polynomial Method and Restricted Sums of Congruence Classes"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
 </a>
   <a href="index.html" title="The Polynomial Method and Restricted Sums of Congruence Classes"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
 </a>
-  <a href="sect0006.html" title="Further Applications"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+  <a href="sect0002.html" title="Preliminaries"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
 </a>
 </nav>
 
