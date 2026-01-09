@@ -144,16 +144,19 @@ lemma totalDegree_sumX_sub_C_second (e : ZMod p) :
   rw [this]
   exact totalDegree_sumX_sub_C_first e
 
-/-- Lemma 2.1.3.3 : The total degree of the product polynomial ∏_{e∈E} (∑X_i - C e) is equal to |E| （Induction steps from J.J. Zhang) -/
-lemma totalDegree_prod_sumX_sub_C_eq_card (E : Multiset (ZMod p)) :
+/-- Lemma 2.1.3.3 (totalDegree_prod_sumX_sub_C_eq_card) : The total degree of the product polynomial ∏_{e∈E} (∑X_i - C e) is equal to |E| （Induction steps from J.J. Zhang)
+
+The official name should be totalDegree_prod_sumX_sub_C_eq_card. When J.J. Zhang gave me the lemma, he named it "foo" to show respect to the coder culture ("foo", "bar", etc.). However, this English name lacks Chinese translation. When I was confused with that, Helios showed great talent in understanding Chinese internet memes and suggested the name "唐得没边". "唐" means "唐氏综合症" (Down syndrome), which is often used in Chinese internet slang to refer to someone who is a bit silly or confused. "得没边" means "to the extreme" or "without barrier". Together, "唐得没边" humorously implies that someone is extremely silly or confused, and also translates the name "foobar" beautifully: "fool" (唐) + "without barrier" (得没边) = "唐得没边".
+-/
+lemma «唐得没边» (E : Multiset (ZMod p)) :
     ((Multiset.map (fun e ↦ ∑ i : Fin (k + 1), X i - C e) E).prod).totalDegree = E.card := by
   induction E using Multiset.induction_on with
   | empty => simp
   | cons x E ih =>
     simp only [Multiset.map_cons, Multiset.prod_cons, Multiset.card_cons]
     rw [totalDegree_mul_of_isDomain]
-    · have foo : ∀ e : ZMod p, (∑ i : Fin (k + 1), X i - C e).totalDegree = 1 := fun e => totalDegree_sumX_sub_C_second e
-      rw [ih, foo, add_comm]
+    · have «唐» : ∀ e : ZMod p, (∑ i : Fin (k + 1), X i - C e).totalDegree = 1 := fun e => totalDegree_sumX_sub_C_second e
+      rw [ih, «唐», add_comm]
     · simp only [ne_eq, sub_eq_zero]
       intro rid
       have := congr($(rid).coeff (fun₀ | 0 => 1))
@@ -938,7 +941,7 @@ lemma degree_product_minus_pow_lt {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ} (E : 
               intro b hb; contrapose! hb; simp_all +decide
               rw [Finset.card_eq_zero.mpr] <;> aesop
             · norm_num
-          · convert totalDegree_prod_sumX_sub_C_eq_card E |> le_of_eq
+          · convert «唐得没边» E |> le_of_eq
       -- If the total degree were at least E.card, there would be a monomial in the support of P - Q with degree exactly E.card.
       by_contra h_contra
       obtain ⟨x, hx⟩ : ∃ x : (Fin (k + 1)) →₀ ℕ, x ∈ (MvPolynomial.support ((E.map (fun e => (∑ i : Fin (k+1), MvPolynomial.X i) - MvPolynomial.C e)).prod - (∑ i : Fin (k+1), MvPolynomial.X i) ^ E.card)) ∧ x.sum (fun _ n => n) = E.card := by
