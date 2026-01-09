@@ -1,0 +1,40 @@
+<h1 id="a0000000004">3 General Polynomial Method Theorem</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="a0000000021">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">7</span>
+    <span class="theorem_thmtitle">General Theorem 2.1</span>
+  </div>
+  <div class="theorem_thmcontent">
+  <p> Let \(p\) be a prime and let \(h=h(x_{0},\ldots ,x_{k})\) be a polynomial over \(\mathbb {Z}_p\). Let \(A_{0},A_{1},\ldots ,A_{k}\) be nonempty subsets of \(\mathbb {Z}_p\), where \(|A_{i}|=c_{i}+1\) and define \(m=\sum _{i=0}^{k}c_{i}-\deg (h).\) If the coefficient of \(\prod _{i=0}^{k}x_{i}^{c_{i}}\) in </p>
+<div class="displaymath" id="a0000000022">
+  \[  (x_{0}+x_{1}+\cdots +x_{k})^{m}h(x_{0},x_{1},\ldots ,x_{k})  \]
+</div>
+<p> is nonzero (in \(\mathbb {Z}_p\)) then </p>
+<div class="displaymath" id="a0000000023">
+  \[  |\oplus _h\sum _{i=0}^{k}A_{i}|\geq m+1  \]
+</div>
+<p> (and hence \(m{\lt}p\)). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000024">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▼</span>
+  </div>
+  <div class="proof_content">
+  <p>Suppose the assertion is false, and let \(E\) be a multiset of \(m\) elements of \(\mathbb {Z}_p\) that contains \(\oplus _h\sum _{i=0}^{k}A_{i}\). Let </p>
+<div class="displaymath" id="a0000000025">
+  \[  Q(x_{0},\ldots ,x_{k})=h(x_{0},\ldots ,x_{k})\cdot \prod _{e\in E}(x_{0}+\ldots +x_{k}-e).  \]
+</div>
+<p> Then \(Q(x_{0},\ldots ,x_{k})=0\) for all \((x_{0},\ldots ,x_{k})\in A_{0}\times \cdots \times A_{k}\). The degree of \(Q\) is \(\sum _{i=0}^{k}c_{i}\). </p>
+<p>For each \(i\), define \(g_{i}(x_{i})=\prod _{a\in A_{i}}(x_{i}-a)=x_{i}^{c_{i}+1}-\sum _{j=0}^{c_{i}}b_{ij}x_{i}^{j}\). Let \(\overline{Q}\) be obtained from \(Q\) by replacing each \(x_{i}^{c_{i}+1}\) with \(\sum _{j=0}^{c_{i}}b_{ij}x_{i}^{j}\). Then \(\overline{Q}\) vanishes on \(A_{0}\times \cdots \times A_{k}\) and has \(x_{i}\)-degree at most \(c_{i}\). By Lemma 2.2, \(\overline{Q}\equiv 0\). </p>
+<p>However, the coefficient of \(\prod _{i=0}^{k}x_{i}^{c_{i}}\) in \(\overline{Q}\) equals its coefficient in \(Q\), which is nonzero by assumption. This contradiction proves the theorem. </p>
+
+  </div>
+</div>
