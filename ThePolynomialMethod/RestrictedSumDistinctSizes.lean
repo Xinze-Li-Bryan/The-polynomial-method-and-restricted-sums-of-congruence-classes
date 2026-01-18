@@ -1,5 +1,5 @@
 import Mathlib
-import ThePolynomialMethod.«妈咪河移位»
+import ThePolynomialMethod.ANRPolynomialMethod
 import ThePolynomialMethod.VandermondeCoefficientFormula
 
 open MvPolynomial

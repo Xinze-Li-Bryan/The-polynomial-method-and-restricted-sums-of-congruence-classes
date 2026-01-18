@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dependency graph</title>
+  <meta name="generator" content="plasTeX" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles/theme-white.css" />
+  <link rel="stylesheet" href="styles/dep_graph.css" />
+  
+  <script type="text/x-mathjax-config">
+  
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  
+  </script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+
+
+<link rel="stylesheet" href="styles/extra_styles.css" />
+
+</head>
+
+<body>
+<header>
+  <a class="toc" href="index.html">Home</a>
+  <h1 id="doc_title">Dependencies</h1>
+</header>
+<div class="wrapper">
+<div class="content">
+  <div id="Legend">
+    <span id="legend_title" class="title">Legend
+    <div class="btn">
+       <div class="bar"></div>
+       <div class="bar"></div>
+       <div class="bar"></div>
+    </div></span> 
+    <dl class="legend">
+      
+      <dt>Boxes</dt><dd>definitions</dd>
+      
+      <dt>Ellipses</dt><dd>theorems and lemmas</dd>
+      
+      <dt>Blue border</dt><dd>the <em>statement</em> of this result is ready to be formalized; all prerequisites are done</dd>
+      
+      <dt>Orange border</dt><dd>the <em>statement</em> of this result is not ready to be formalized; the blueprint needs more work</dd>
+      
+      <dt>Blue background</dt><dd>the <em>proof</em> of this result is ready to be formalized; all prerequisites are done</dd>
+      
+      <dt>Green border</dt><dd>the <em>statement</em> of this result is formalized</dd>
+      
+      <dt>Green background</dt><dd>the <em>proof</em> of this result is formalized</dd>
+      
+      <dt>Dark green background</dt><dd>the <em>proof</em> of this result and all its ancestors are formalized</dd>
+      
+      <dt>Dark green border</dt><dd>this is in Mathlib</dd>
+      
+    </dl>
+  </div>
+    <div id="graph"></div>
+<div id="statements">
+
+    
+    <div class="dep-modal-container" id="a0000000004_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="a0000000004" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">1</span><span class="theorem_thmtitle">Cauchy Davenport Theorem<span class="cite">
+	[
+	<a href="index.html#3" >3</a>
+	]
+</span></span></div>
+    <div class="thm_thmcontent"><p> If \(p\) is a prime, and \(A, B\) are two nonempty subsets of \(\mathbb {Z}_p\), then </p>
+<div class="displaymath" id="a0000000005">
+  \[  |A + B| \geq \min \{ p, |A| + |B| - 1\} .  \]
+</div>
+</div>
+
+    <a class="latex_link" href="index.html#a0000000004">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:coefficient-vandermonde_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:coefficient-vandermonde" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">6</span></div>
+    <div class="thm_thmcontent"><p> Let \(c_0, \ldots , c_k\) be nonnegative integers and suppose that \(\sum _{i=0}^k c_i = m + \binom {k+1}{2}\), where \(m\) is a nonnegative integer. Then the coefficient of \(\prod _{i=0}^k x_i^{c_i}\) in the polynomial </p>
+<div class="displaymath" id="a0000000021">
+  \[  (x_0 + x_1 + \cdots + x_k)^m \prod _{k \geq i {\gt} j \geq 0} (x_i - x_j)  \]
+</div>
+<p> is </p>
+<div class="displaymath" id="a0000000022">
+  \[  \frac{m!}{c_0! c_1! \cdots c_k!} \prod _{k \geq i {\gt} j \geq 0} (c_i - c_j).  \]
+</div>
+</div>
+
+    <a class="latex_link" href="index.html#lem:coefficient-vandermonde">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:polynomial-vanishing_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:polynomial-vanishing" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">5</span></div>
+    <div class="thm_thmcontent"><p> Let \(P = P(x_0, x_1, \ldots , x_k)\) be a polynomial in \(k+1\) variables over an arbitrary field \(F\). Suppose that the degree of \(P\) as a polynomial in \(x_i\) is at most \(c_i\) for \(0 \leq i \leq k\), and let \(A_i \subset F\) be a set of cardinality \(c_i + 1\). If \(P(x_0, x_1, \ldots , x_k) = 0\) for all \((k+1)\)-tuples \((x_0, \ldots , x_k) \in A_0 \times A_1 \times \cdots \times A_k\), then \(P \equiv 0\), that is: all the coefficients in \(P\) are zeros. </p>
+</div>
+
+    <a class="latex_link" href="index.html#lem:polynomial-vanishing">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:main-example_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:main-example" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">2</span></div>
+    <div class="thm_thmcontent"><p> Let \(p\) be a prime, and let \(A_0, A_1, \ldots , A_k\) be nonempty subsets of the cyclic group \(\mathbb {Z}_p\). If \(|A_i| \neq |A_j|\) for all \(0 \leq i {\lt} j \leq k\) and \(\sum _{i=0}^k |A_i| \leq p + \binom {k+2}{2} - 1\) then </p>
+<div class="displaymath" id="a0000000006">
+  \[  |\{ a_0 + a_1 + \cdots + a_k : a_i \in A_i, \;  a_i \neq a_j \text{ for all } i \neq j\} | \geq \sum _{i=0}^k |A_i| - \binom {k+2}{2} + 1.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="index.html#prop:main-example">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:pairwise-product-not-one_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:pairwise-product-not-one" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">11</span></div>
+    <div class="thm_thmcontent"><p> If \(p\) is a prime and \(A_0, A_1, \ldots , A_k\) are subsets of \(\mathbb {Z}_p\), where \(|A_i| \geq k + 1\) for all \(i\), then </p>
+<div class="displaymath" id="a0000000045">
+  \[  \left| \left\{ a_0 + \cdots + a_k : a_i \in A_i, \;  a_i \cdot a_j \neq 1 \text{ for all } 0 \leq i {\lt} j \leq k \right\}  \right| \geq \min \left\{ p, \;  \sum _{i=0}^k |A_i| - (k+1)^2 + 1\right\} .  \]
+</div>
+</div>
+
+    <a class="latex_link" href="index.html#prop:pairwise-product-not-one">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:pairwise-product-not-one-strong_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:pairwise-product-not-one-strong" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">12</span></div>
+    <div class="thm_thmcontent"><p> If \(p\) is a prime and \(A_0, \ldots , A_k\) are subsets of \(\mathbb {Z}_p \setminus \{ 1, -1\} \), each of cardinality \(s {\gt} \log _2(k+1)\) then the set \(S\) defined in (3) is nonempty. This is tight for all \(s \leq (p-3)/2\), as for each such \(s\) there is a collection of \(2^s\) sets \(A_i \subset \mathbb {Z}_p \setminus \{ 1, -1\} \) of cardinality \(s\) each for which the set \(S\) from (3) is empty. </p>
+</div>
+
+    <a class="latex_link" href="index.html#prop:pairwise-product-not-one-strong">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:product-not-g_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:product-not-g" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">10</span></div>
+    <div class="thm_thmcontent"><p> If \(p\) is a prime and \(A_0, A_1, \ldots , A_k\) are nonempty subsets of \(\mathbb {Z}_p\), then for every \(g \in \mathbb {Z}_p\), </p>
+<div class="displaymath" id="a0000000043">
+  \[  \left| \left\{ a_0 + \cdots + a_k : a_i \in A_i, \;  \prod _{i=0}^k a_i \neq g \right\}  \right| \geq \min \left\{ p, \;  \sum _{i=0}^k |A_i| - 2k - 1\right\} .  \]
+</div>
+</div>
+
+    <a class="latex_link" href="index.html#prop:product-not-g">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:product-not-one_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:product-not-one" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">9</span></div>
+    <div class="thm_thmcontent"><p> If \(p\) is a prime and \(A, B\) are two nonempty subsets of \(\mathbb {Z}_p\), then </p>
+<div class="displaymath" id="a0000000041">
+  \[  |\{ a + b : a \in A, \;  b \in B, \;  ab \neq 1\} | \geq \min \{ p, |A| + |B| - 3\} .  \]
+</div>
+</div>
+
+    <a class="latex_link" href="index.html#prop:product-not-one">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:sum-with-conditions_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:sum-with-conditions" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">13</span></div>
+    <div class="thm_thmcontent"><p> If \(p\) is a prime and \(A, B\) are two nonempty subsets of \(\mathbb {Z}_p\), with \(|A| {\gt} |B|\) then for any \(e \in \mathbb {Z}_p\) </p>
+<div class="displaymath" id="a0000000050">
+  \[  |\{ a + b : a \in A, \;  b \in B, \;  ab \neq e \text{ and } a \neq b\} | \geq \min \{ p, |A| + |B| - 4\} . \tag {4}  \]
+</div>
+</div>
+
+    <a class="latex_link" href="index.html#prop:sum-with-conditions">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:DiasDaSilvaHamidoune_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:DiasDaSilvaHamidoune" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">8</span><span class="theorem_thmtitle"><span class="cite">
+	[
+	<a href="index.html#4" >4</a>
+	]
+</span></span></div>
+    <div class="thm_thmcontent"><p>  Let \(p\) be a prime and let \(A\) be a nonempty subset of \(\mathbb {Z}_p\). Let \(s^{\wedge } A\) denote the set of all sums of \(s\) distinct elements of \(A\). Then \(|s^{\wedge } A| \geq \min \{ p, \;  s|A| - s^2 + 1\} \). </p>
+</div>
+
+    <a class="latex_link" href="index.html#thm:DiasDaSilvaHamidoune">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:ErdosHeilbronn_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:ErdosHeilbronn" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">3</span><span class="theorem_thmtitle"><span class="cite">
+	[
+	<a href="index.html#4" >4</a>
+	]
+</span></span></div>
+    <div class="thm_thmcontent"><p>  If \(p\) is a prime, and \(A\) is a nonempty subset of \(\mathbb {Z}_p\), then </p>
+<div class="displaymath" id="a0000000007">
+  \[  |\{ a + a' : a, a' \in A, \;  a \neq a'\} | \geq \min \{ p, 2|A| - 3\} .  \]
+</div>
+</div>
+
+    <a class="latex_link" href="index.html#thm:ErdosHeilbronn">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:general_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:general" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">4</span></div>
+    <div class="thm_thmcontent"><p> Let \(p\) be a prime and let \(h = h(x_0, \ldots , x_k)\) be a polynomial over \(\mathbb {Z}_p\). Let \(A_0, A_1, \ldots , A_k\) be nonempty subsets of \(\mathbb {Z}_p\), where \(|A_i| = c_i + 1\) and define \(m = \sum _{i=0}^k c_i - \deg (h)\). If the coefficient of \(\prod _{i=0}^k x_i^{c_i}\) in </p>
+<div class="displaymath" id="a0000000010">
+  \[  (x_0 + x_1 + \cdots + x_k)^m h(x_0, x_1, \ldots , x_k)  \]
+</div>
+<p> is nonzero (in \(\mathbb {Z}_p\)) then </p>
+<div class="displaymath" id="a0000000011">
+  \[  \left| \oplus _h \sum _{i=0}^k A_i \right| \geq m + 1  \]
+</div>
+<p> (and hence \(m {\lt} p\)). </p>
+</div>
+
+    <a class="latex_link" href="index.html#thm:general">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:general-distinct-residues_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:general-distinct-residues" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">7</span></div>
+    <div class="thm_thmcontent"><p> Let \(p\) be a prime, and let \(A_0, \ldots , A_k\) be nonempty subsets of \(\mathbb {Z}_p\), where \(|A_i| = b_i\), and suppose \(b_0 \geq b_1 \geq \cdots \geq b_k\). Define \(b_0', \ldots , b_k'\) by </p>
+<div class="displaymath" id="a0000000033">
+  \[  b_0' = b_0 \quad \text{and} \quad b_i' = \min \{ b_{i-1}' - 1, b_i\} , \text{ for } 1 \leq i \leq k. \tag {2}  \]
+</div>
+<p> If \(b_k' {\gt} 0\) then </p>
+<div class="displaymath" id="a0000000034">
+  \[  \left| \oplus _{i=0}^k A_i \right| \geq \min \left\{ p, \;  \sum _{i=0}^k b_i' - \binom {k+2}{2} + 1\right\} .  \]
+</div>
+<p> Moreover, the above estimate is sharp for all possible values of \(p \geq b_0 \geq \cdots \geq b_k\). </p>
+</div>
+
+    <a class="latex_link" href="index.html#thm:general-distinct-residues">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+</div>
+</div> <!-- content -->
+</div> <!-- wrapper -->
+<script src="js/jquery.min.js" type="text/javascript"></script>
+
+<script src="js/d3.min.js"></script>
+<script src="js/hpcc.min.js"></script>
+<script src="js/d3-graphviz.js"></script>
+
+<script type="text/javascript">
+const graphContainer = d3.select("#graph");
+const width = graphContainer.node().clientWidth;
+const height = graphContainer.node().clientHeight;
+
+
+graphContainer.graphviz({useWorker: true})
+    .width(width)
+    .height(height)
+    .fit(true)
+    .renderDot(`strict digraph "" {	graph [bgcolor=transparent];	node [label="\N",		penwidth=1.8	];	edge [arrowhead=vee];	"thm:DiasDaSilvaHamidoune"	[color=blue,		fillcolor="#A3D6FF",		label=DiasDaSilvaHamidoune,		shape=ellipse,		style=filled];	"thm:general"	[color=blue,		label=general,		shape=ellipse];	"thm:general-distinct-residues"	[color=blue,		fillcolor="#A3D6FF",		label="general-distinct-residues",		shape=ellipse,		style=filled];	"lem:polynomial-vanishing"	[color=blue,		fillcolor="#A3D6FF",		label="polynomial-vanishing",		shape=ellipse,		style=filled];	"lem:coefficient-vandermonde"	[color=blue,		fillcolor="#A3D6FF",		label="coefficient-vandermonde",		shape=ellipse,		style=filled];	"prop:product-not-one"	[color=blue,		fillcolor="#A3D6FF",		label="product-not-one",		shape=ellipse,		style=filled];	"prop:product-not-g"	[color=blue,		fillcolor="#A3D6FF",		label="product-not-g",		shape=ellipse,		style=filled];	"prop:main-example"	[color=blue,		label="main-example",		shape=ellipse];	"prop:pairwise-product-not-one"	[color=blue,		fillcolor="#A3D6FF",		label="pairwise-product-not-one",		shape=ellipse,		style=filled];	"prop:pairwise-product-not-one-strong"	[color=blue,		fillcolor="#A3D6FF",		label="pairwise-product-not-one-strong",		shape=ellipse,		style=filled];	"prop:sum-with-conditions"	[color=blue,		fillcolor="#A3D6FF",		label="sum-with-conditions",		shape=ellipse,		style=filled];	a0000000004	[color=blue,		label=a0000000004,		shape=ellipse];	"thm:ErdosHeilbronn"	[color=blue,		label=ErdosHeilbronn,		shape=ellipse];}`)
+    .on("end", interactive);
+
+latexLabelEscaper = function(label) {
+  return label.replace(/\./g, '\\.').replace(/:/g, '\\:')
+}
+
+clickNode = function() {
+  $("#statements div").hide()
+  var node_id = $('text', this).text();
+  $('.thm').hide();
+  $('#'+latexLabelEscaper(node_id)).show().children().show();
+}
+function interactive() {
+    $("span#legend_title").on("click", function () {
+           $(this).siblings('dl').toggle();
+        })
+
+    d3.selectAll('.node')
+        .attr('pointer-events', 'fill')
+        .on('click', function () {
+           var title = d3.select(this).selectAll('title').text().trim();
+           $('#statements > div').hide()
+           $('.thm').hide();
+           $('#'+latexLabelEscaper(title)+'_modal').show().children().show().children().show();
+           $('#statements').show()
+        });
+
+    d3.selectAll('.dep-closebtn').on('click', function() {
+        var modal =
+            d3.select(this).node().parentNode.parentNode.parentNode ;
+        d3.select(modal).style('display', 'none');
+    });
+}
+
+</script>
+
+</body>
+</html>

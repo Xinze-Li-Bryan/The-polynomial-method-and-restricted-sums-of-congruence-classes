@@ -16,6 +16,7 @@ The following was proved by Aristotle:
 -/
 
 import Mathlib
+import ThePolynomialMethod.RestrictedSumDistinctSizes
 
 
 open MvPolynomial
@@ -29,25 +30,6 @@ open BigOperators
 variable {R : Type*} [CommRing R]
 
 variable {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ}
-
-/-- S = {a₀ + ... + aₖ | aᵢ ∈ Aᵢ, aᵢ ≠ aⱼ for all i ≠ j} -/
-def restricted_sum_set (k : ℕ) (A : Fin (k+1) → Finset (ZMod p)) : Finset (ZMod p) :=
-  ((Fintype.piFinset A).filter fun f =>
-    ∀ (i j : Fin (k+1)), i < j → f i ≠ f j)
-    |>.image (fun f => ∑ i, f i)
-
-/-- Vandermonde: ∏_{i>j} (Xᵢ - Xⱼ) -/
-noncomputable def vandermonde_polynomial (k : ℕ) : MvPolynomial (Fin (k+1)) (ZMod p) :=
-  ∏ i : Fin (k+1), ∏ j : Fin (k+1),
-    if j.val < i.val then (X i - X j) else 1
-
-set_option maxHeartbeats 2000000 in
-theorem restricted_sum_distinct_sizes (A : Fin (k+1) → Finset (ZMod p))
-    (h_nonempty : ∀ i, (A i).Nonempty)
-    (h_sizes_distinct : ∀ i j, i < j → (A i).card ≠ (A j).card)
-    (h_sum_bound : ∑ i, (A i).card ≤ p + (Nat.choose (k+2) 2) - 1) :
-    (restricted_sum_set k A).card ≥ ∑ i, (A i).card - (Nat.choose (k+2) 2) + 1 := by
-  admit
 
 /-- The compressed sizes b'_i defined recursively:
     b'_0 = b_0, b'_i = min{b'_{i-1} - 1, b_i} for i ≥ 1 -/

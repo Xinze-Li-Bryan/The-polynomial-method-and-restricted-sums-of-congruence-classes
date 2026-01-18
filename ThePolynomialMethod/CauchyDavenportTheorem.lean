@@ -4,8 +4,7 @@ import Mathlib.Analysis.Normed.Ring.Lemmas
 import Mathlib.Combinatorics.Nullstellensatz
 import Mathlib.Data.Int.Star
 import Mathlib.Data.Nat.Prime.Factorial
-import ThePolynomialMethod.«妈咪河移位»
--- Type import ThePolynomialMethod.\f<<妈咪河移位\f>>
+import ThePolynomialMethod.ANRPolynomialMethod
 
 open Finsupp
 open scoped Finset
