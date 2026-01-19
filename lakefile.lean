@@ -1,14 +1,15 @@
-import Lake open Lake DSL
+import Lake
+open Lake DSL
 
-require mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ "v4.27.0-rc1"
+require mathlib from git
+  "https://github.com/leanprover-community/mathlib4.git" @ "v4.27.0-rc1"
 
-package "ThePolynomialMethod" where
+package "ThePolynomialMethod"
 
-lean_lib "ThePolynomialMethod" where
-  srcDir := "."
-  globs := #[.submodules `ThePolynomialMethod]
+lean_lib "ThePolynomialMethod"
 
-require checkdecls from git "https://github.com/PatrickMassot/checkdecls.git"
+require checkdecls from git
+  "https://github.com/PatrickMassot/checkdecls.git"
 
 meta if get_config? env = some "dev" then
 require «doc-gen4» from git
