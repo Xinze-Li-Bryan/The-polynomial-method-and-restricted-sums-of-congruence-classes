@@ -1,2 +1,7 @@
-module ThePolynomialMethod where
-def hello : String := "Polynomial Method"
+import ThePolynomialMethod.Basic
+import ThePolynomialMethod.ANRPolynomialMethod
+import ThePolynomialMethod.CauchyDavenportTheorem
+import ThePolynomialMethod.CompressedSizesRestrictedSum
+import ThePolynomialMethod.DiasDaSilvaHamidoune
+import ThePolynomialMethod.RestrictedSumDistinctSizes
+import ThePolynomialMethod.VandermondeCoefficientFormula

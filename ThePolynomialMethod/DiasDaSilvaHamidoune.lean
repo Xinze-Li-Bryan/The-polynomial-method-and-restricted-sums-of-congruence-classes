@@ -14,6 +14,7 @@ The following was proved by Aristotle:
 
 import Mathlib
 import ThePolynomialMethod.RestrictedSumDistinctSizes
+import ThePolynomialMethod.CompressedSizesRestrictedSum
 
 
 open MvPolynomial
@@ -29,15 +30,7 @@ variable {R : Type*} [CommRing R]
 variable {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ}
 
 
-/-- The compressed sizes b'_i defined recursively:
-    b'_0 = b_0, b'_i = min{b'_{i-1} - 1, b_i} for i ≥ 1 -/
-def compressed_sizes (b : Fin (k+1) → ℕ) : Fin (k+1) → ℕ :=
-  λ i =>
-    match i with
-    | 0 => b 0
-    | ⟨i+1, hi⟩ =>
-      let prev : Fin (k+1) := ⟨i, by omega⟩
-      min (compressed_sizes b prev - 1) (b ⟨i+1, hi⟩)
+-- Using compressed_sizes from ThePolynomialMethod.CompressedSizesRestrictedSum
 
 /-
 Theorem 3.2:
@@ -81,13 +74,7 @@ and in any case it is contained in the set of consecutive residues
   (k+2 choose 2), (k+2 choose 2) + 1, ..., ∑_{i=0}^k b′_i,
 where the numbers b′_i are defined by (2). This completes the proof.
 -/
-set_option maxHeartbeats 0 in
-theorem compressed_sizes_restricted_sum  (A : Fin (k+1) → Finset (ZMod p))
-    (h_nonempty : ∀ i, (A i).Nonempty)
-    (h_sizes_noninc : ∀ i j, i ≤ j → (A j).card ≤ (A i).card)
-    (h_last_pos : compressed_sizes (λ i => (A i).card) (Fin.last k) > 0) :
-    (restricted_sum_set k A).card ≥
-    min p (∑ i : Fin (k+1), compressed_sizes (λ i => (A i).card) i - (Nat.choose (k+2) 2) + 1) := by admit
+-- Using compressed_sizes_restricted_sum from ThePolynomialMethod.CompressedSizesRestrictedSum
 
 /-- The set of all sums of s distinct elements of A -/
 def distinct_sum_set (A : Finset (ZMod p)) (s : ℕ) : Finset (ZMod p) :=

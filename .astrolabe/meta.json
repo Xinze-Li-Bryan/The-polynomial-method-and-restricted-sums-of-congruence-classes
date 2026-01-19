@@ -1,0 +1,133 @@
+{
+  "nodes": {
+    "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes": {
+      "visible": true,
+      "notes": "## Definition: compressed_sizes\n\nThe compressed sizes $b'_i$ defined recursively:\n- $b'_0 = b_0$\n- $b'_i = \\min\\{b'_{i-1} - 1, b_i\\}$ for $i \\geq 1$"
+    },
+    "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes_le": {
+      "visible": true,
+      "notes": "## Lemma: compressed_sizes_le\n\nThe compressed size $b'_i$ is at most $b_i$ for all $i$."
+    },
+    "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes_zero": {
+      "visible": true,
+      "notes": "## Lemma: compressed_sizes_zero\n\nThe value of `compressed_sizes` at index 0 is $b_0$ by definition."
+    },
+    "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes_succ": {
+      "visible": true,
+      "notes": "## Lemma: compressed_sizes_succ\n\nThe recurrence relation:\n$$b'_{i+1} = \\min(b'_i - 1, b_{i+1})$$"
+    },
+    "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes_restricted_sum": {
+      "visible": true,
+      "notes": "## Theorem 3.2: compressed_sizes_restricted_sum\n\nLet $p$ be a prime, and let $A_0, \\ldots, A_k$ be nonempty subsets of $\\mathbb{Z}_p$.\n\nIf $b'_k > 0$ then:\n$$|S| \\geq \\min\\left\\{p, \\sum_{i=0}^k b'_i - \\binom{k+2}{2} + 1\\right\\}$$"
+    },
+    "ThePolynomialMethod.DiasDaSilvaHamidoune.dias_da_silva_hamidoune": {
+      "visible": true,
+      "notes": "## Theorem 3.3: Dias da Silva-Hamidoune\n\nLet $p$ be a prime and let $A$ be a nonempty subset of $\\mathbb{Z}_p$.\n\nLet $s \\wedge A$ denote the set of all sums of $s$ distinct elements of $A$.\n\nThen:\n$$|s \\wedge A| \\geq \\min\\{p, s|A| - s^2 + 1\\}$$"
+    },
+    "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes_is_valid": {
+      "visible": true,
+      "notes": "## Lemma: compressed_sizes_is_valid\n\nThe compressed sizes form a valid sequence (strictly decreasing and positive)."
+    },
+    "ThePolynomialMethod.CompressedSizesRestrictedSum.reduction_lemma": {
+      "visible": true,
+      "notes": "## Lemma: reduction_lemma\n\nIf $\\sum b'_i > p + \\binom{k+2}{2} - 1$, we can reduce to a smaller valid sequence."
+    },
+    "ThePolynomialMethod.RestrictedSumDistinctSizes.restricted_sum_distinct_sizes": {
+      "visible": true,
+      "notes": "## Proposition 1.2: restricted_sum_distinct_sizes\n\nIf $c_0 > c_1 > \\cdots > c_k \\geq 1$ and $\\sum c_i \\leq p + \\binom{k+2}{2} - 1$, then:\n$$|S| \\geq \\sum_{i=0}^k c_i - \\binom{k+2}{2} + 1$$"
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.ANR_polynomial_method": {
+      "visible": true,
+      "notes": "## Theorem 2.1: Alon-Nathanson-Ruzsa Polynomial Method\n\nLet $p$ be a prime, let $h$ be a nonzero polynomial in $\\mathbb{Z}_p[X_0,\\ldots,X_k]$, and let $A_0,\\ldots,A_k$ be nonempty subsets of $\\mathbb{Z}_p$.\n\nDefine $c_i = |A_i| - 1$ for each $i$.\n\nIf $\\deg(h) + |S| > \\sum c_i$, then:\n$$|S| \\geq \\sum_{i=0}^k c_i - \\deg(h) + 1$$"
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.coeff_mul_eq_of_degree_bound": {
+      "visible": true,
+      "notes": "## Lemma 2.1.11: coeff_mul_eq_of_degree_bound\n\nIf two polynomials $P$ and $Q$ have $\\deg(P-Q) < m$, then the coefficients of the monomial defined by $c$ in $h \\cdot P$ and $h \\cdot Q$ are equal, given that $\\deg(h) + m = \\sum c_i$."
+    },
+    "ThePolynomialMethod.CauchyDavenportTheorem.cauchy_davenport_small_sum": {
+      "visible": true,
+      "notes": "## Lemma 1.1.3: cauchy_davenport_small_sum\n\nCase 1 in the paper (small sum case).\n\nWhen $|A| + |B| \\leq p + 1$:\n$$|A + B| \\geq |A| + |B| - 1$$"
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.coeff_target_eq_zero_of_vanishes_on_grid": {
+      "visible": true,
+      "notes": "## Lemma 2.1.10: coeff_target_eq_zero_of_vanishes_on_grid\n\nIf a polynomial $Q$ vanishes on a grid defined by sets $A_i$ and has total degree at most $\\sum |A_i| - 1$, then the coefficient of the monomial defined by these sizes is zero."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.construction_polynomial_coeff_target_generalized": {
+      "visible": true,
+      "notes": "## Lemma 2.1.6: construction_polynomial_coeff_target_generalized\n\nThe coefficient of a specific term in the construction polynomial is non-zero under certain conditions."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.construction_polynomial_totalDegree": {
+      "visible": true,
+      "notes": "## Lemma 2.1.4: construction_polynomial_totalDegree\n\nThe total degree of the construction polynomial equals $\\sum c_i$."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.construction_polynomial_vanishes": {
+      "visible": true,
+      "notes": "## Lemma 2.1.1: construction_polynomial_vanishes\n\nThe construction polynomial vanishes on the product set $A_0 \\times A_1 \\times \\cdots \\times A_k$."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.degree_product_minus_pow_lt": {
+      "visible": true,
+      "notes": "## Lemma 2.1.12: degree_product_minus_pow_lt\n\nThe total degree of the difference between the product of linear terms and the corresponding power of the sum polynomial is less than $|E|$."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.extend_to_size": {
+      "visible": true,
+      "notes": "## Definition: extend_to_size\n\nThe construction of $E$ from $S$ when $|S| \\leq m$.\n\nExtends a finset $S$ to a multiset $E$ of size $m$ by adding zeros."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.product_polynomial_ne_zero": {
+      "visible": true,
+      "notes": "## Lemma 2.1.2: product_polynomial_ne_zero\n\nThe product polynomial $\\prod_{e \\in E} (\\sum X_i - e)$ is always nonzero."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.reduce_polynomial_degrees": {
+      "visible": true,
+      "notes": "## Definition: reduce_polynomial_degrees\n\nReduces the degree of a polynomial in each variable by replacing high-degree monomials with equivalent lower-degree expressions using elimination polynomials."
+    },
+    "ThePolynomialMethod.DiasDaSilvaHamidoune.distinct_sum_set": {
+      "visible": true,
+      "notes": "## Definition: distinct_sum_set\n\nThe set of all sums of $s$ distinct elements of $A$:\n$$s \\wedge A = \\{\\text{sum of } s \\text{ distinct elements from } A\\}$$"
+    },
+    "ThePolynomialMethod.RestrictedSumDistinctSizes.restricted_sum_set": {
+      "visible": true,
+      "notes": "## Definition: restricted_sum_set\n\n$$S = \\{a_0 + \\cdots + a_k \\mid a_i \\in A_i, a_i \\neq a_j \\text{ for all } i \\neq j\\}$$\n\nThe set of sums where all summands are distinct."
+    },
+    "ThePolynomialMethod.RestrictedSumDistinctSizes.restricted_sum_m_bound": {
+      "visible": true,
+      "notes": "## Lemma: restricted_sum_m_bound\n\nBound on $m$ for the restricted sum theorem."
+    },
+    "ThePolynomialMethod.RestrictedSumDistinctSizes.vandermonde_coeff_nonzero": {
+      "visible": true,
+      "notes": "## Lemma: vandermonde_coeff_nonzero\n\nThe coefficient of the target monomial in the Vandermonde polynomial is nonzero."
+    },
+    "ThePolynomialMethod.RestrictedSumDistinctSizes.vandermonde_degree_eq": {
+      "visible": true,
+      "notes": "## Lemma: vandermonde_degree_eq\n\nThe degree of the Vandermonde polynomial equals $\\binom{k+1}{2}$."
+    },
+    "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes_pos": {
+      "visible": true,
+      "notes": "## Lemma: compressed_sizes_pos\n\nIf $b'_k > 0$, then $b'_i > 0$ for all $i$."
+    }
+  },
+  "edges": {},
+  "canvas": {
+    "positions": {
+      "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    "viewport": {
+      "camera_position": [
+        -8.842716555135892,
+        25.68850281386507,
+        -7.853415038028301
+      ],
+      "camera_target": [
+        -8.84271660922738,
+        3.062851816638535,
+        -7.853392412441963
+      ],
+      "zoom": 1.0,
+      "selected_node_id": "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes_pos",
+      "selected_edge_id": null
+    }
+  }
+}
