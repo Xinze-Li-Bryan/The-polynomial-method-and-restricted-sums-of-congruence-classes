@@ -1,9 +1,6 @@
 # ThePolynomialMethod
 
 [![Astrolabe](https://img.shields.io/badge/Astrolabe-3D_Visualizer-blue)](https://github.com/Xinze-Li-Bryan/Astrolabe)
-[![Sphere Eversion](https://img.shields.io/badge/Astrolabe-Sphere_Eversion-green)](https://github.com/Xinze-Li-Bryan/astrolabe-template-sphere-eversion)
-[![Ramanujan-Nagell](https://img.shields.io/badge/Astrolabe-Ramanujan--Nagell-orange)](https://github.com/Xinze-Li-Bryan/astrolabe-template-ramanujan-nagell)
-[![Strong PNT](https://img.shields.io/badge/Astrolabe-Strong_PNT-red)](https://github.com/Xinze-Li-Bryan/astrolabe-template-strongpnt)
 
 The author of this README.md is Nick Adfor.
 
