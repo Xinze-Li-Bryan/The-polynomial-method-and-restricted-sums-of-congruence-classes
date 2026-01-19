@@ -103,6 +103,110 @@
     "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes_pos": {
       "visible": true,
       "notes": "## Lemma: compressed_sizes_pos\n\nIf $b'_k > 0$, then $b'_i > 0$ for all $i$."
+    },
+    "ThePolynomialMethod.CauchyDavenportTheorem.cauchy_davenport": {
+      "visible": true,
+      "notes": "## Theorem 1.1: Cauchy-Davenport\n\nLet $p$ be a prime and let $A, B$ be nonempty subsets of $\\mathbb{Z}_p$.\n\nThen:\n$$|A + B| \\geq \\min\\{p, |A| + |B| - 1\\}$$"
+    },
+    "ThePolynomialMethod.CauchyDavenportTheorem.binomial_coeff_ne_zero_mod_p": {
+      "visible": true,
+      "notes": "## Lemma 1.1.2: binomial_coeff_ne_zero_mod_p\n\nIf $k \\leq n < p$ where $p$ is prime, then:\n$$\\binom{n}{k} \\not\\equiv 0 \\pmod{p}$$"
+    },
+    "ThePolynomialMethod.CauchyDavenportTheorem.sum_fin_two": {
+      "visible": true,
+      "notes": "## Lemma 1.1.1: sum_fin_two\n\nConverts the sum on Fin 2 into a binary sum:\n$$\\sum_{i \\in \\text{Fin } 2} f(i) = f(0) + f(1)$$"
+    },
+    "ThePolynomialMethod.CauchyDavenportTheorem.sumset": {
+      "visible": true,
+      "notes": "## Definition: sumset\n\nThe sumset of two sets $A$ and $B$:\n$$A + B = \\{a + b \\mid a \\in A, b \\in B\\}$$"
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.totalDegree_sumX_sub_C_second": {
+      "visible": true,
+      "notes": "## Lemma: totalDegree_sumX_sub_C_second\n\nThe total degree of $(\\sum_{i=0}^k X_i) - c$ equals 1 for any constant $c$."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.«唐得没边»": {
+      "visible": true,
+      "notes": "## Lemma 2.1.3.3: totalDegree_prod_sumX_sub_C_eq_card\n\nThe total degree of the product polynomial:\n$$\\deg\\left(\\prod_{e \\in E} \\left(\\sum X_i - e\\right)\\right) = |E|$$"
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.totalDegree_sumX_sub_C_first": {
+      "visible": true,
+      "notes": "## Lemma: totalDegree_sumX_sub_C_first\n\nThe total degree of $\\text{sumX\\_polynomial} - C(a)$ equals 1."
+    },
+    "ThePolynomialMethod.RestrictedSumDistinctSizes.vandermonde_polynomial": {
+      "visible": true,
+      "notes": "## Definition: vandermonde_polynomial\n\nThe Vandermonde polynomial:\n$$\\prod_{0 \\leq j < i \\leq k} (X_i - X_j)$$"
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.Vandermonde_coefficient_formula": {
+      "visible": true,
+      "notes": "## Lemma 3.1: Vandermonde Coefficient Formula\n\nLet $c_0, \\ldots, c_k$ be nonnegative integers with $\\sum c_i = m + \\binom{k+1}{2}$.\n\nThe coefficient of $\\prod X_i^{c_i}$ in $(\\sum X_i)^m \\cdot \\prod_{i>j}(X_i - X_j)$ is:\n$$\\frac{m!}{\\prod c_i!} \\cdot \\prod_{i>j}(c_i - c_j)$$"
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.coeff_term": {
+      "visible": true,
+      "notes": "## Lemma: coeff_term\n\nComputes the coefficient of a specific term in the product $(\\sum X_i)^m \\cdot \\prod X_i^{\\sigma(i)}$."
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.symmetric_sum_fixed_eq_expected_value": {
+      "visible": true,
+      "notes": "## Lemma: symmetric_sum_fixed_eq_expected_value\n\nThe symmetric group sum equals the expected value formula."
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.toFinsupp": {
+      "visible": true,
+      "notes": "## Definition: toFinsupp\n\nConverts a function $c : \\text{Fin}(k+1) \\to \\mathbb{N}$ to a finitely supported function."
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.det_falling_factorial_eq_det_vandermonde": {
+      "visible": true,
+      "notes": "## Lemma: det_falling_factorial_eq_det_vandermonde\n\nThe determinant of the falling factorial matrix equals the determinant of the Vandermonde matrix:\n$$\\det((c_i)_j) = \\det(c_i^j)$$"
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.expected_value": {
+      "visible": true,
+      "notes": "## Definition: expected_value\n\nThe expected coefficient value:\n$$\\frac{m!}{\\prod c_i!} \\cdot \\prod_{i>j}(c_i - c_j)$$"
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.falling_factorial_eq_factorial_div": {
+      "visible": true,
+      "notes": "## Lemma: falling_factorial_eq_factorial_div\n\nThe falling factorial equals:\n$$(n)_k = \\frac{n!}{(n-k)!}$$ if $k \\leq n$, else 0."
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.symmetric_sum_fixed": {
+      "visible": true,
+      "notes": "## Definition: symmetric_sum_fixed\n\nSymmetric group sum:\n$$C = \\sum_{\\sigma \\in S_{k+1}} (-1)^{\\text{sgn}(\\sigma)} \\frac{m!}{\\prod (c_i - \\sigma(i))!}$$"
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.falling_factorial_matrix": {
+      "visible": true,
+      "notes": "## Definition: falling_factorial_matrix\n\nThe falling factorial matrix $((c_i)_j)$ where $(s)_r = s(s-1)\\cdots(s-r+1)$."
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.vandermonde_matrix": {
+      "visible": true,
+      "notes": "## Definition: vandermonde_matrix\n\nThe Vandermonde matrix $(c_i^j)_{0 \\leq i,j \\leq k}$."
+    },
+    "ThePolynomialMethod.VandermondeCoefficientFormula.falling_factorial": {
+      "visible": true,
+      "notes": "## Definition: falling_factorial\n\nThe falling factorial:\n$$(s)_r = s(s-1)(s-2)\\cdots(s-r+1)$$\n\nwith $(s)_0 = 1$."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.exists_remainder": {
+      "visible": true,
+      "notes": "## Lemma: exists_remainder\n\nExistence of a polynomial remainder after degree reduction."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.monomial_reduction_step": {
+      "visible": true,
+      "notes": "## Lemma: monomial_reduction_step\n\nA single step in the monomial reduction process, replacing a high-degree term with an equivalent lower-degree expression."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.sumX_polynomial": {
+      "visible": true,
+      "notes": "## Definition: sumX_polynomial\n\nThe sum polynomial:\n$$\\sum_{i=0}^k X_i$$"
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.construction_polynomial": {
+      "visible": true,
+      "notes": "## Definition: construction_polynomial\n\nThe polynomial $\\prod_{i=0}^k \\prod_{a \\in A_i} (X_i - a)$ that vanishes on the grid $A_0 \\times \\cdots \\times A_k$."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.product_polynomial": {
+      "visible": true,
+      "notes": "## Definition: product_polynomial\n\nThe product polynomial:\n$$\\prod_{e \\in E} \\left(\\sum_{i=0}^k X_i - e\\right)$$"
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.elimination_polynomial_properties": {
+      "visible": true,
+      "notes": "## Lemma: elimination_polynomial_properties\n\nProperties of the elimination polynomials used in degree reduction."
+    },
+    "ThePolynomialMethod.ANRPolynomialMethod.elimination_polynomials": {
+      "visible": true,
+      "notes": "## Definition: elimination_polynomials\n\nPolynomials $X_i^{|A_i|} - \\prod_{a \\in A_i}(X_i - a)$ used to reduce degrees in each variable."
     }
   },
   "edges": {},
@@ -116,17 +220,17 @@
     },
     "viewport": {
       "camera_position": [
-        -8.842716555135892,
-        25.68850281386507,
-        -7.853415038028301
+        -2.985542270227083,
+        -0.6394332613032111,
+        33.36023441935251
       ],
       "camera_target": [
-        -8.84271660922738,
-        3.062851816638535,
-        -7.853392412441963
+        4.657311694035135,
+        -0.7993843474792344,
+        17.610102274182356
       ],
       "zoom": 1.0,
-      "selected_node_id": "ThePolynomialMethod.CompressedSizesRestrictedSum.compressed_sizes_pos",
+      "selected_node_id": "ThePolynomialMethod.ANRPolynomialMethod.monomial_reduction_step",
       "selected_edge_id": null
     }
   }
